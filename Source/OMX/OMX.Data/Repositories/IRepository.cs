@@ -1,8 +1,10 @@
-﻿namespace OMX.Contracts.Repositories
+﻿namespace OMX.Data.Repositories
 {
     using System;
     using System.Linq;
     using System.Linq.Expressions;
+
+    using OMX.Contracts;
 
     public interface IRepository<T> where T : IEntity
     {

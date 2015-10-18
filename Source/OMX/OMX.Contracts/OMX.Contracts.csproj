@@ -63,10 +63,8 @@
     <Compile Include="Models\DeletableEntity.cs" />
     <Compile Include="Models\IAuditInfo.cs" />
     <Compile Include="Models\IDeletableEntity.cs" />
-    <Compile Include="Repositories\IDeletableEntityRepository.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Models\IOrderable.cs" />
-    <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

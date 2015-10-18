@@ -61,12 +61,20 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OMXDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DeletableEntityRepository.cs" />
+    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\IDeletableEntityRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OMX.Common\OMX.Common.csproj">
+      <Project>{41695524-04ab-4fc7-b6f4-1f499fefbec9}</Project>
+      <Name>OMX.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OMX.Contracts\OMX.Contracts.csproj">
       <Project>{262371d1-c7f0-4c4a-a73b-b1ebd9026498}</Project>
       <Name>OMX.Contracts</Name>
