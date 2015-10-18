@@ -57,6 +57,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAnnotations\IsUnicodeAttribute.cs" />
+    <Compile Include="CodeFirstConventions\IsUnicodeAttributeConvention.cs" />
+    <Compile Include="Models\AuditInfo.cs" />
+    <Compile Include="Models\DeletableEntity.cs" />
+    <Compile Include="Models\IAuditInfo.cs" />
+    <Compile Include="Models\IDeletableEntity.cs" />
+    <Compile Include="Repositories\IDeletableEntityRepository.cs" />
+    <Compile Include="IEntity.cs" />
+    <Compile Include="Models\IOrderable.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

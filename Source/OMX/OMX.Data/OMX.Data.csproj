@@ -57,6 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IOMXDbContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OMXDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -65,6 +67,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OMX.Contracts\OMX.Contracts.csproj">
+      <Project>{262371d1-c7f0-4c4a-a73b-b1ebd9026498}</Project>
+      <Name>OMX.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OMX.Models\OMX.Models.csproj">
       <Project>{f5e83516-2fb8-41a4-9605-3847a5e8e7af}</Project>
       <Name>OMX.Models</Name>
