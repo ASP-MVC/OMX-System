@@ -73,9 +73,7 @@
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(
-            LoginViewModel model,
-            string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!this.ModelState.IsValid)
             {
@@ -84,13 +82,7 @@
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result =
-                await
-                this.SignInManager.PasswordSignInAsync(
-                    model.Email,
-                    model.Password,
-                    model.RememberMe,
-                    false);
+            var result = await this.SignInManager.PasswordSignInAsync(model.UserName, model.Password,model.RememberMe,false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -186,7 +178,7 @@
             {
                 var user = new User
                 {
-                    UserName = model.Email,
+                    UserName = model.UserName,
                     Email = model.Email
                 };
                 var result =

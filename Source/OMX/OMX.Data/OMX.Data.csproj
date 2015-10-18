@@ -65,6 +65,8 @@
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\IDeletableEntityRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="UoW\IOMXData.cs" />
+    <Compile Include="UoW\OMXData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
