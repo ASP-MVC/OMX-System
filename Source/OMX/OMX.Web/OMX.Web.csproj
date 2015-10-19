@@ -48,6 +48,10 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper, Version=4.0.4.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -260,6 +264,10 @@
     <ProjectReference Include="..\OMX.Data\OMX.Data.csproj">
       <Project>{a1afb2c4-5827-4510-b9f4-cb68d99bdbfc}</Project>
       <Name>OMX.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OMX.Infrastructure\OMX.Infrastructure.csproj">
+      <Project>{0f8fc71d-b8af-401c-be9f-8f6f36f3ca1f}</Project>
+      <Name>OMX.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\OMX.Models\OMX.Models.csproj">
       <Project>{f5e83516-2fb8-41a4-9605-3847a5e8e7af}</Project>
