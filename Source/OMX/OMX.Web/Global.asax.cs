@@ -15,7 +15,6 @@
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<OMXDbContext, Configuration>());
             AutoMapperConfig.Execute(Assembly.GetExecutingAssembly());
             
             AreaRegistration.RegisterAllAreas();

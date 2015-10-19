@@ -19,7 +19,7 @@
         public int Id { get; set; }
 
         [Required]
-        [StringLength(300, MinimumLength = 2)]
+        [StringLength(300, MinimumLength = 1)]
         public string Title { get; set; }
 
         [MaxLength(1500)]
@@ -35,6 +35,10 @@
         public string OwnerId { get; set; }
         
         public virtual User Owner { get; set; }
+
+        public int SubCategoryId { get; set; }
+
+        public virtual SubCategory SubCategory { get; set; }
 
         public virtual ICollection<Picture> Pictures
         {

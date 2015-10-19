@@ -8,6 +8,7 @@
 
     using OMX.Contracts.CodeFirstConventions;
     using OMX.Contracts.Models;
+    using OMX.Data.Migrations;
     using OMX.Models;
 
     public class OMXDbContext : IdentityDbContext<User>, IOMXDbContext
@@ -15,6 +16,7 @@
         public OMXDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<OMXDbContext, Configuration>());
         }
 
         public virtual  IDbSet<Category> Categories { get; set; }
