@@ -1,0 +1,41 @@
+﻿namespace OMX.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using OMX.Contracts.Models;
+
+    public class Category : AuditInfo, IDeletableEntity
+    {
+        private ICollection<SubCategory> subCategories;
+
+        public Category()
+        {
+            this.subCategories = new HashSet<SubCategory>();
+        }
+
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        [StringLength(150, MinimumLength = 2)]
+        public string Title { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
+
+        public virtual ICollection<SubCategory> SubCategories
+        {
+            get
+            {
+                return this.subCategories;
+            }
+            set
+            {
+                this.subCategories = value;
+            }
+        }
+    }
+}

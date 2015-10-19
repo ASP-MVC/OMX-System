@@ -9,6 +9,14 @@
     {
         IDbSet<User> Users { get; set; }
 
+        IDbSet<Category> Categories { get; set; }
+
+        IDbSet<SubCategory> SubCategories { get; set; }
+
+        IDbSet<Ad> Ads { get; set; }
+
+        IDbSet<Picture> Pictures { get; set; }
+
         DbContext DbContext { get; }
 
         int SaveChanges();

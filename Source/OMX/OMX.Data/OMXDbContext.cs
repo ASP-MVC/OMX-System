@@ -17,6 +17,14 @@
         {
         }
 
+        public virtual  IDbSet<Category> Categories { get; set; }
+
+        public virtual IDbSet<SubCategory> SubCategories { get; set; }
+
+        public virtual IDbSet<Ad> Ads { get; set; }
+
+        public virtual IDbSet<Picture> Pictures { get; set; }
+
         public DbContext DbContext
         {
             get
