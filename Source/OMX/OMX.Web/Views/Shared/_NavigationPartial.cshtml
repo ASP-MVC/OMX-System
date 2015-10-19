@@ -1,0 +1,17 @@
+﻿@using OMX.Common
+@if (User.Identity.IsAuthenticated)
+{
+    <li>@Html.ActionLink("Home", "Index", "Home", new {Area = string.Empty}, null)</li>
+    if (User.IsInRole(GlobalConstants.AdminRole))
+    {
+        <li class="dropdown close">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+                Administration <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Manage users", "ManageUsers", "Admin", new { Area = GlobalConstants.AdministrationArea }, null)</li>
+                <li>@Html.ActionLink("Manage Categories", "ManageCategories", "Admin", new { Area = GlobalConstants.AdministrationArea }, null)</li>
+            </ul>
+        </li>
+    }
+}

@@ -4,6 +4,8 @@
     {
         public const string AdminRole = "Admin";
 
+        public const string AdministrationArea = "Administration";
+
         public const string UserRole = "User";
     }
 }

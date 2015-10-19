@@ -20,8 +20,8 @@
             @Html.ActionLink("OMX", "Index", "Home", new { Area = string.Empty }, new { @class = "navbar-brand" })
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <ul class="nav navbar-nav nav-pills">
+                @Html.Partial("_NavigationPartial")
             </ul>
             @Html.Partial("_LoginPartial")
         </div>

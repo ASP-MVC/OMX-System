@@ -2,11 +2,18 @@
 {
     using System.Web.Mvc;
 
-    public class HomeController : Controller
+    using OMX.Data.UoW;
+
+    public class HomeController : BaseController
     {
+        public HomeController(IOMXData data)
+            : base(data)
+        {
+        }
+
         public ActionResult Index()
         {
             return this.View();
-        }
+        }        
     }
 }
