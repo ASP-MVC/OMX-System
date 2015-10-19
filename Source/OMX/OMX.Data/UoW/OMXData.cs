@@ -8,13 +8,13 @@
     using OMX.Data.Repositories;
     using OMX.Models;
 
-    public class EasyPtcData : IOMXData
+    public class OMXData : IOMXData
     {
         private readonly IOMXDbContext context;
 
         private readonly Dictionary<Type, object> repositories = new Dictionary<Type, object>();
 
-        public EasyPtcData(IOMXDbContext context)
+        public OMXData(IOMXDbContext context)
         {
             this.context = context;
         }
