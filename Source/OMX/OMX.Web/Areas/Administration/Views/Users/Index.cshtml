@@ -1,0 +1,21 @@
+﻿@using OMX.Infrastructure.HtmlHelpers
+@using OMX.Web.Models.ViewModels
+
+@{
+    ViewBag.Title = "Manage Users";
+    const string ControllerName = "Users";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@(Html.BuiltFeaturedGrid<UserViewModel>(
+    ControllerName,
+    m => m,
+    columns: (cols =>
+    {
+        cols.Bound(c => c.UserName);
+        cols.Bound(c => c.Email);
+        cols.Bound(c => c.PublishedAdsCount);
+        cols.Command(c => c.Edit()).Title("Edit");
+        cols.Command(c => c.Destroy()).Title("Delete");
+    })))

@@ -7,7 +7,5 @@
 
 <h2>@ViewBag.Title</h2>
 
-@(Html.BuiltFeaturedGrid<CategoryViewModel>(
-    ControllerName,
-    m => m))
-
+@(Html.BuiltFeaturedGrid<CategoryViewModel>(ControllerName, m => m.Id))
+    

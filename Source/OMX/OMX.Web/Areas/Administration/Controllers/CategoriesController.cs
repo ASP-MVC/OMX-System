@@ -1,6 +1,7 @@
 ﻿namespace OMX.Web.Areas.Administration.Controllers
 {
     using System.Collections;
+    using System.Data.Entity;
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
@@ -8,7 +9,6 @@
     using Kendo.Mvc.UI;
 
     using OMX.Data.UoW;
-    using OMX.Models;
     using OMX.Web.Areas.Administration.Models.BindingModels;
     using OMX.Web.Areas.Administration.Models.ViewModels;
 
@@ -35,19 +35,11 @@
         }
 
         [HttpPost]
-        public ActionResult Create([DataSourceRequest]DataSourceRequest request, CategoryBindingModel model)
+        public ActionResult Edit([DataSourceRequest]DataSourceRequest request, CategoryBindingModel model)
         {
-            var dbModel = base.Create<Category>(model);
-            if (dbModel != null)
-            {
-                model.Id = dbModel.Id;
-            }
-            return this.GridOperation(model, request);
-        }
-        [HttpPost]
-        public ActionResult Update([DataSourceRequest]DataSourceRequest request, CategoryBindingModel model)
-        {
-            base.Update<Category, CategoryBindingModel>(model, model.Id);
+            var category = this.Data.Categories.GetById(model.Id);
+            category.Title = model.Title;
+            this.ChangeEntityStateAndSave(category, EntityState.Modified);
             return this.GridOperation(model, request);
         }
 

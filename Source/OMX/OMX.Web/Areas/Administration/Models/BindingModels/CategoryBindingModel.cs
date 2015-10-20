@@ -1,5 +1,6 @@
 ﻿namespace OMX.Web.Areas.Administration.Models.BindingModels
 {
+    using System;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
@@ -15,6 +16,7 @@
         [Required]
         [StringLength(150, MinimumLength = 1)]
         [DisplayName("Category's Title")]
+        [UIHint("String")]
         public string Title { get; set; }
     }
 }

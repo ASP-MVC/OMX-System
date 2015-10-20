@@ -31,39 +31,13 @@
 
             return this.Json(ads);
         }
-
-        [NonAction]
-        protected virtual T Create<T>(object model) where T : class
-        {
-            if (model != null && this.ModelState.IsValid)
-            {
-                var dbModel = Mapper.Map<T>(model);
-                this.ChangeEntityStateAndSave(dbModel, EntityState.Added);
-                return dbModel;
-            }
-
-            return null;
-        }
-
-        [NonAction]
-        protected virtual void Update<TModel, TViewModel>(TViewModel model, object id)
-            where TModel : class
-            where TViewModel : class
-        {
-            if (model != null && this.ModelState.IsValid)
-            {
-                var dbModel = this.GetById<TModel>(id);
-                Mapper.Map<TViewModel, TModel>(model, dbModel);
-                this.ChangeEntityStateAndSave(dbModel, EntityState.Modified);
-            }
-        }
-
+        
         protected JsonResult GridOperation<T>(T model, [DataSourceRequest]DataSourceRequest request)
         {
             return this.Json(new[] { model }.ToDataSourceResult(request, this.ModelState));
         }
 
-        private void ChangeEntityStateAndSave(object dbModel, EntityState state)
+        protected void ChangeEntityStateAndSave(object dbModel, EntityState state)
         {
             var entry = this.Data.Context.Entry(dbModel);
             entry.State = state;
