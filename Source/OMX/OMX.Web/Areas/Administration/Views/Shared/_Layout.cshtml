@@ -2,5 +2,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-Inner layout
+@section styles {
+    @Styles.Render("~/Content/kendo")
+    @RenderSection("styles", required: false)
+}
+
 @RenderBody()
+
+@section scripts {
+    @Scripts.Render("~/bundles/kendo")
+    @RenderSection("scripts", required: false)
+}

@@ -9,8 +9,8 @@
                 Administration <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li>@Html.ActionLink("Manage users", "ManageUsers", "Admin", new { Area = GlobalConstants.AdministrationArea }, null)</li>
-                <li>@Html.ActionLink("Manage Categories", "ManageCategories", "Admin", new { Area = GlobalConstants.AdministrationArea }, null)</li>
+                <li>@Html.ActionLink("Manage Users", "ManageUsers", "Admin", new { Area = GlobalConstants.AdministrationArea }, null)</li>
+                <li>@Html.ActionLink("Manage Categories", "Index", "Categories", new { Area = GlobalConstants.AdministrationArea }, null)</li>
             </ul>
         </li>
     }

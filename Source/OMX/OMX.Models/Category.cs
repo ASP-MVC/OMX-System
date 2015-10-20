@@ -4,9 +4,10 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using OMX.Contracts;
     using OMX.Contracts.Models;
 
-    public class Category : AuditInfo, IDeletableEntity
+    public class Category : AuditInfo, IDeletableEntity, IEntity
     {
         private ICollection<SubCategory> subCategories;
 

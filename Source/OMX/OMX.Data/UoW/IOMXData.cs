@@ -7,9 +7,13 @@
     {
         IOMXDbContext Context { get; }
 
-        //IDeletableEntityRepository<Advertisement> Advertisements { get; }
+        IDeletableEntityRepository<Ad> Ads { get; }
 
-        //IDeletableEntityRepository<Category> Categories { get; }
+        IDeletableEntityRepository<Category> Categories { get; }
+
+        IDeletableEntityRepository<SubCategory> SubCategories { get; }
+
+        IDeletableEntityRepository<Picture> Pictures { get; }
 
         IRepository<User> Users { get; }
 

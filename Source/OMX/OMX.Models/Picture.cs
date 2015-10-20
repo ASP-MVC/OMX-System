@@ -3,9 +3,10 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
+    using OMX.Contracts;
     using OMX.Contracts.Models;
 
-    public class Picture : AuditInfo, IDeletableEntity
+    public class Picture : AuditInfo, IDeletableEntity, IEntity
     {
         [Key]
         public int Id { get; set; }

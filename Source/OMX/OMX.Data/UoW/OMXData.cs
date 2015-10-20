@@ -12,11 +12,12 @@
     {
         private readonly IOMXDbContext context;
 
-        private readonly Dictionary<Type, object> repositories = new Dictionary<Type, object>();
+        private readonly Dictionary<Type, object> repositories;
 
         public OMXData(IOMXDbContext context)
         {
             this.context = context;
+            this.repositories = new Dictionary<Type, object>();
         }
 
         public IOMXDbContext Context
@@ -26,31 +27,31 @@
                 return this.context;
             }
         }
-
-        //public IRepository<T> GetGenericRepository<T>() where T : class
-        //{
-        //    if (typeof(T).IsAssignableFrom(typeof(DeletableEntity)))
-        //    {
-        //        return this.GetDeletableEntityRepository<T>();
-        //    }
-
-        //    return this.GetRepository<T>();
-        //}
-
+        
         public IRepository<User> Users
         {
             get { return this.GetRepository<User>(); }
         }
 
-        //public IDeletableEntityRepository<Advertisement> Advertisements
-        //{
-        //    get { return this.GetDeletableEntityRepository<Advertisement>(); }
-        //}
+        public IDeletableEntityRepository<Ad> Ads
+        {
+            get { return this.GetDeletableEntityRepository<Ad>(); }
+        }
 
-        //public IDeletableEntityRepository<Category> Categories
-        //{
-        //    get { return this.GetDeletableEntityRepository<Category>(); }
-        //}
+        public IDeletableEntityRepository<Category> Categories
+        {
+            get { return this.GetDeletableEntityRepository<Category>(); }
+        }
+
+        public IDeletableEntityRepository<SubCategory> SubCategories
+        {
+            get { return this.GetDeletableEntityRepository<SubCategory>(); }
+        }
+
+        public IDeletableEntityRepository<Picture> Pictures
+        {
+            get { return this.GetDeletableEntityRepository<Picture>(); }
+        }
 
         /// <summary>
         /// Saves all changes made in this context to the underlying database.

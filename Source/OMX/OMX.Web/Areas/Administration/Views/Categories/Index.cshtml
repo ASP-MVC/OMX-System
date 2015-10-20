@@ -1,0 +1,13 @@
+﻿@using OMX.Infrastructure.HtmlHelpers
+@using OMX.Web.Areas.Administration.Models.ViewModels
+@{
+    ViewBag.Title = "Manage Categories";
+    const string ControllerName = "Categories";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@(Html.BuiltFeaturedGrid<CategoryViewModel>(
+    ControllerName,
+    m => m))
+

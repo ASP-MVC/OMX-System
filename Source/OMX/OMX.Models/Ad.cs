@@ -4,9 +4,10 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using OMX.Contracts;
     using OMX.Contracts.Models;
 
-    public class Ad : AuditInfo, IDeletableEntity
+    public class Ad : AuditInfo, IDeletableEntity, IEntity
     {
         private ICollection<Picture> pictures;
 
