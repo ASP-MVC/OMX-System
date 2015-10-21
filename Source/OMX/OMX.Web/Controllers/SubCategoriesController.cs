@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace OMX.Web.Controllers
+﻿namespace OMX.Web.Controllers
 {
-    public class SubCategoriesController : Controller
+    using OMX.Data.UoW;
+
+    public class SubCategoriesController : BaseController
     {
-        // GET: SubCategories
-        public ActionResult Index()
+        public SubCategoriesController(IOMXData data)
+            : base(data)
         {
-            return View();
         }
+
+
     }
 }

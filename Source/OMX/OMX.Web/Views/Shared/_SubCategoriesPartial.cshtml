@@ -1,0 +1,17 @@
+﻿@model IEnumerable<OMX.Web.Models.ViewModels.MinifiedSubCategoryViewModel>
+
+
+<div class="row">
+    <h2 class="text-center">@ViewBag.CategoryName</h2>
+    <div class="list-group">
+        @foreach (var subCategory in Model)
+        {
+            <div class="col-md-4">
+                <a href="#" class="list-group-item">
+                    @subCategory.Title
+                </a>
+                @Html.ActionLink(@subCategory.Title.ToString(), "Ads", "Ads", new {id = @subCategory.Id}, null)
+            </div>
+        }
+    </div>
+</div>

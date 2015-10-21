@@ -9,7 +9,8 @@
     using OMX.Models;
     using OMX.Web.Areas.Administration.Models.BindingModels;
     using OMX.Web.Areas.Administration.Models.ViewModels;
-    
+    using OMX.Web.Models.ViewModels;
+
     public class CategoriesController : BaseController
     {
         private const int TopNineCategories = 9;
@@ -25,6 +26,7 @@
                 this.Data.Categories.All()
                 .OrderByDescending(c => c.CreatedOn)
                 .ThenBy(c => c.Id)
+                .Where(s => s.SubCategories.Any())
                 .Take(TopNineCategories)
                 .Project()
                 .To<CategoryViewModel>()
@@ -54,6 +56,27 @@
             }
 
             return this.View(model);
+        }
+
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public ActionResult CategorySubCategories(int id)
+        {
+            var category = this.Data.Categories.GetById(id);
+            if (category == null)
+            {
+                return this.HttpNotFound("The selected category no longer exists");
+            }
+            this.ViewBag.CategoryName = category.Title;
+
+            var subCategories = 
+                category.SubCategories
+                .AsQueryable()
+                .Project()
+                .To<MinifiedSubCategoryViewModel>()
+                .ToList();
+
+            return this.PartialView("_SubCategoriesPartial", subCategories);
         }
     }
 }

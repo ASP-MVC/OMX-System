@@ -6,7 +6,15 @@
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <a href="tesest/1">@category.Title</a>
+                    @Ajax.ActionLink(@category.Title.ToString(), "CategorySubCategories", "Categories",
+                        new { id = @category.Id },
+                        new AjaxOptions()
+                        {
+                            UpdateTargetId = "subCategoriesContainer",
+                            HttpMethod = "GET",
+                            InsertionMode = InsertionMode.Replace,
+                            AllowCache = false
+                        })
                 </div>
             </div>
         </div>
