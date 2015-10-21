@@ -1,7 +1,29 @@
-﻿
+﻿@model IEnumerable<OMX.Web.Models.ViewModels.AdViewModel>
 @{
     ViewBag.Title = "Ads";
 }
 
-<h2>Ads</h2>
-
+<div class="jumbotron">
+    <h1>Ads</h1>
+    <div class="row">
+        @foreach (var ad in Model)
+        {
+            <div class="col-md-6">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">
+                            <a href="#">@ad.Title</a>
+                            <span class="badge pull-right">@ad.Price лв.</span>
+                        </h2>
+                    </div>
+                    <div class="panel-body">
+                        @if (ad.Pictures.Any())
+                        {
+                            <img src="@ad.Pictures.First().Url" class="img-thumbnail" />
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

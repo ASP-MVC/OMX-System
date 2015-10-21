@@ -7,10 +7,7 @@
         @foreach (var subCategory in Model)
         {
             <div class="col-md-4">
-                <a href="#" class="list-group-item">
-                    @subCategory.Title
-                </a>
-                @Html.ActionLink(@subCategory.Title.ToString(), "Ads", "Ads", new {id = @subCategory.Id}, null)
+                @Html.ActionLink(@subCategory.Title.ToString(), "Ads", "Ads", new {id = @subCategory.Id}, new {@class = "list-group-item" })
             </div>
         }
     </div>
