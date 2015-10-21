@@ -9,12 +9,11 @@
     <div class="panel-body">
         @if (Model.Pictures.Any())
         {
-            <img src="@Model.Pictures.First().Url" class="img-thumbnail ad-image" />
+            <img src="@Model.Pictures.First().Url" alt="image" class="img-thumbnail ad-image" />
         }
         else
         {
-            <img src="~/Content/Images/default.png" class="img-thumbnail ad-image" />
+            <img src="~/Content/Images/default.png" alt="no-image" class="img-thumbnail ad-image" />
         }
     </div>
 </div>
-

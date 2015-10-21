@@ -1,7 +1,6 @@
 ﻿@using OMX.Common
 @if (User.Identity.IsAuthenticated)
 {
-    <li>@Html.ActionLink("Home", "Index", "Home", new {Area = string.Empty}, null)</li>
     if (User.IsInRole(GlobalConstants.AdminRole))
     {
         <li class="dropdown close">

@@ -46,5 +46,25 @@
 
             return this.View(viewModel);
         }
+
+        [HttpGet]
+        public ActionResult AdPictures(int id)
+        {
+            var ad = this.Data.Ads.GetById(id);
+            if (ad == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            var pictures = 
+                ad
+                .Pictures
+                .AsQueryable()
+                .Project()
+                .To<PictureViewModel>()
+                .ToList();
+
+            return this.PartialView("_AdPicturesPartial",pictures);
+        }
     }
 }

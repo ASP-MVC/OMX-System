@@ -3,12 +3,13 @@
 
 <div class="row">
     <h2 class="text-center">@ViewBag.CategoryName</h2>
-    <div class="list-group">
+    <div class="list-group well">
         @foreach (var subCategory in Model)
         {
             <div class="col-md-4">
                 @Html.ActionLink(@subCategory.Title.ToString(), "Ads", "Ads", new {id = @subCategory.Id}, new {@class = "list-group-item" })
             </div>
         }
+        <div class="clearfix"></div>
     </div>
 </div>

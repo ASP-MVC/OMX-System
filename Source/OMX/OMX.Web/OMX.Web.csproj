@@ -1146,6 +1146,7 @@
     <Content Include="Views\Ads\Ads.cshtml" />
     <Content Include="Views\Ads\PreviewAdById.cshtml" />
     <Content Include="Views\Ads\_AdPartial.cshtml" />
+    <Content Include="Views\Ads\_AdPicturesPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Files\" />
