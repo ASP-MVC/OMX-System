@@ -1,0 +1,20 @@
+﻿@model OMX.Web.Models.ViewModels.AdViewModel
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h2 class="panel-title">
+            @Model.Title
+            <span class="badge pull-right">@Model.Price лв.</span>
+        </h2>
+    </div>
+    <div class="panel-body">
+        @if (Model.Pictures.Any())
+        {
+            <img src="@Model.Pictures.First().Url" class="img-thumbnail ad-image" />
+        }
+        else
+        {
+            <img src="~/Content/Images/default.png" class="img-thumbnail ad-image" />
+        }
+    </div>
+</div>
+

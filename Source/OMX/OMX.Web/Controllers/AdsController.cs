@@ -3,6 +3,7 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
     using OMX.Common;
@@ -18,7 +19,7 @@
         {
         }
 
-        // GET: Ads for sub category
+        [HttpGet]
         public ActionResult Ads(int id, int page = 1)
         {
             var ads =
@@ -30,6 +31,20 @@
                     .To<AdViewModel>();
 
             return this.View(ads.ToPagedList(page, GlobalConstants.AdsPageSize));
+        }
+
+        [HttpGet]
+        public ActionResult PreviewAdById(int id)
+        {
+            var ad = this.Data.Ads.GetById(id);
+            if (ad == null)
+            {
+                return this.HttpNotFound("Ad no longer exists");
+            }
+
+            var viewModel = Mapper.Map<AdViewModel>(ad);
+
+            return this.View(viewModel);
         }
     }
 }

@@ -234,6 +234,7 @@
     <Content Include="Content\bootstrap.flatly.css" />
     <Content Include="Content\bootstrap.flatly.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\default.png" />
     <Content Include="Content\kendo\Black\editor.png" />
     <Content Include="Content\kendo\Black\imagebrowser.png" />
     <Content Include="Content\kendo\Black\indeterminate.gif" />
@@ -1143,6 +1144,8 @@
     <Content Include="Views\Categories\Create.cshtml" />
     <Content Include="Views\Shared\_SubCategoriesPartial.cshtml" />
     <Content Include="Views\Ads\Ads.cshtml" />
+    <Content Include="Views\Ads\PreviewAdById.cshtml" />
+    <Content Include="Views\Ads\_AdPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Files\" />

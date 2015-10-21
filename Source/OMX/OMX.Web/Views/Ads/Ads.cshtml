@@ -10,20 +10,7 @@
         @foreach (var ad in Model)
         {
             <div class="col-md-6">
-                <div class="panel panel-warning">
-                    <div class="panel-heading">
-                        <h2 class="panel-title">
-                            <a href="#">@ad.Title</a>
-                            <span class="badge pull-right">@ad.Price лв.</span>
-                        </h2>
-                    </div>
-                    <div class="panel-body">
-                        @if (ad.Pictures.Any())
-                        {
-                            <img src="@ad.Pictures.First().Url" class="img-thumbnail"/>
-                        }
-                    </div>
-                </div>
+                <a href="/Ads/PreviewAdById/@ad.Id">@Html.Partial("_AdPartial", ad)</a>
             </div>
         }
     </div>

@@ -20,6 +20,9 @@
 
         public decimal Price { get; set; }
 
+        [UIHint("DateTime")]
+        public DateTime CreatedOn { get; set; }
+
         [HiddenInput(DisplayValue =  false)]
         public bool IsDeleted { get; set; }
 

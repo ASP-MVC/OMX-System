@@ -1,0 +1,34 @@
+﻿@model OMX.Web.Models.ViewModels.AdViewModel
+@{
+    ViewBag.Title = "PreviewAdById";
+}
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            @Html.Partial("_AdPartial", @Model)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="alert alert-dismissible alert-warning">
+                <span class="pull-left">
+                    <strong>Add by </strong><span class="badge">@Model.Owner.UserName</span>
+                </span>
+                <span class="pull-right">
+                    <strong>Added on </strong><span class="badge">@Model.CreatedOn</span>
+                </span>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h2 class="text-center">Add description</h2>
+            <div class="alert alert-dismissible alert-success">
+                @Model.Content
+            </div>
+        </div>
+    </div>
+</div>
+
