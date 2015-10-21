@@ -5,8 +5,11 @@
 
     using AutoMapper.QueryableExtensions;
 
+    using OMX.Common;
     using OMX.Data.UoW;
     using OMX.Web.Models.ViewModels;
+
+    using PagedList;
 
     public class AdsController : BaseController
     {
@@ -16,7 +19,7 @@
         }
 
         // GET: Ads for sub category
-        public ActionResult Ads(int id)
+        public ActionResult Ads(int id, int page = 1)
         {
             var ads =
                 this.Data.Ads.All()
@@ -24,10 +27,9 @@
                     .ThenBy(a => a.Id)
                     .Where(a => a.SubCategoryId == id)
                     .Project()
-                    .To<AdViewModel>()
-                    .ToList();
+                    .To<AdViewModel>();
 
-            return this.View(ads);
+            return this.View(ads.ToPagedList(page, GlobalConstants.AdsPageSize));
         }
     }
 }

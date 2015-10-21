@@ -1,4 +1,5 @@
-﻿@model IEnumerable<OMX.Web.Models.ViewModels.AdViewModel>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<OMX.Web.Models.ViewModels.AdViewModel>
 @{
     ViewBag.Title = "Ads";
 }
@@ -19,7 +20,7 @@
                     <div class="panel-body">
                         @if (ad.Pictures.Any())
                         {
-                            <img src="@ad.Pictures.First().Url" class="img-thumbnail" />
+                            <img src="@ad.Pictures.First().Url" class="img-thumbnail"/>
                         }
                     </div>
                 </div>
@@ -27,3 +28,9 @@
         }
     </div>
 </div>
+<br/>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Ads",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

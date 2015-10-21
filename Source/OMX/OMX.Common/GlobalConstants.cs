@@ -7,5 +7,9 @@
         public const string AdministrationArea = "Administration";
 
         public const string UserRole = "User";
+
+        public const int AdsPageSize = 6;
+
+        public const int DefaultPageSize = 10;
     }
 }
