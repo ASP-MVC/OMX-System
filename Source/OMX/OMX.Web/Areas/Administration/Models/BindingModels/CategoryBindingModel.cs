@@ -16,7 +16,7 @@
         [Required]
         [StringLength(150, MinimumLength = 1)]
         [DisplayName("Category's Title")]
-        [UIHint("String")]
+        [UIHint("SingleLineText")]
         public string Title { get; set; }
     }
 }

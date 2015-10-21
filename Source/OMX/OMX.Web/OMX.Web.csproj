@@ -204,6 +204,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SubCategoriesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1124,11 +1125,13 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
-    <Content Include="Views\Categories\All.cshtml" />
+    <Content Include="Views\Shared\_AllCategoriesPartial.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Files\" />
     <Folder Include="Models\BindingModels\" />
+    <Folder Include="Views\SubCategories\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
