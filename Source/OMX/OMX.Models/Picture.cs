@@ -13,6 +13,8 @@
 
         public string Url { get; set; }
 
+        public byte[] Content { get; set; }
+
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }

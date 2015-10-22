@@ -76,13 +76,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caching\ICacheService.cs" />
+    <Compile Include="Caching\InMemoryCache.cs" />
     <Compile Include="HtmlHelpers\KendoHelper.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\IMapFrom.cs" />
+    <Compile Include="Populators\DropDownListPopulator.cs" />
+    <Compile Include="Populators\IDropDownListPopulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\OMX.Contracts\OMX.Contracts.csproj">
+      <Project>{262371D1-C7F0-4C4A-A73B-B1EBD9026498}</Project>
+      <Name>OMX.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OMX.Data\OMX.Data.csproj">
+      <Project>{A1AFB2C4-5827-4510-B9F4-CB68D99BDBFC}</Project>
+      <Name>OMX.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OMX.Models\OMX.Models.csproj">
+      <Project>{F5E83516-2FB8-41A4-9605-3847A5E8E7AF}</Project>
+      <Name>OMX.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

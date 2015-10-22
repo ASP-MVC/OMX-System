@@ -13,6 +13,8 @@ namespace OMX.Web.App_Start
 
     using OMX.Data;
     using OMX.Data.UoW;
+    using OMX.Infrastructure.Caching;
+    using OMX.Infrastructure.Populators;
 
     public static class NinjectWebCommon 
     {
@@ -65,7 +67,12 @@ namespace OMX.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IOMXDbContext>().To<OMXDbContext>();
+
             kernel.Bind<IOMXData>().To<OMXData>();
+
+            kernel.Bind<ICacheService>().To<InMemoryCache>();
+
+            kernel.Bind<IDropDownListPopulator>().To<DropDownListPopulator>();
         }        
     }
 }

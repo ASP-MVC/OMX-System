@@ -1,0 +1,18 @@
+﻿@model OMX.Web.Models.BindingModels.CreateAdBindingModel
+@{
+    ViewBag.Title = "Add new Ad";
+}
+
+<h1>@ViewBag.Title</h1>
+
+@using (Html.BeginForm("Create", "Ads", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.EditorFor(a => a.Title)
+    @Html.EditorFor(a => a.Content)
+    @Html.EditorFor(a => a.SubCategoryId, new { ListItem = Model.SubCategories })
+    @Html.EditorFor(a => a.Price)
+
+    <input type="submit" class="btn btn-primary" value="Create"/>
+}

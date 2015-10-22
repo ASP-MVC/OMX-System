@@ -1,22 +1,32 @@
 ﻿namespace OMX.Web.Controllers
 {
+    using System;
+    using System.IO;
     using System.Linq;
     using System.Web.Mvc;
 
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
+    using Microsoft.AspNet.Identity;
+
     using OMX.Common;
     using OMX.Data.UoW;
+    using OMX.Infrastructure.Populators;
+    using OMX.Models;
+    using OMX.Web.Models.BindingModels;
     using OMX.Web.Models.ViewModels;
 
     using PagedList;
 
     public class AdsController : BaseController
     {
-        public AdsController(IOMXData data)
+        private IDropDownListPopulator populator;
+
+        public AdsController(IOMXData data, IDropDownListPopulator populator)
             : base(data)
         {
+            this.populator = populator;
         }
 
         [HttpGet]
@@ -65,6 +75,44 @@
                 .ToList();
 
             return this.PartialView("_AdPicturesPartial",pictures);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Create()
+        {
+            var adsBindingModel = new CreateAdBindingModel()
+            {
+                SubCategories = this.populator.GetSubCategories()
+            };
+
+            return this.View(adsBindingModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(CreateAdBindingModel model)
+        {
+            if (model != null && this.ModelState.IsValid)
+            {
+                var ad = Mapper.Map<Ad>(model);
+                ad.OwnerId = this.User.Identity.GetUserId();
+                if (model.UploadedImages != null)
+                {
+                    using (var memory = new MemoryStream())
+                    {
+                        model.UploadedImages.InputStream.CopyTo(memory);
+                        var imgBytes = memory.GetBuffer();
+                        ad.Pictures.Add(new Picture { Content = imgBytes });
+                    }
+                }
+                this.Data.Ads.Add(ad);
+                this.Data.SaveChanges();
+                return this.RedirectToAction("Index", "Home");
+            }
+
+            return this.View(model);
         }
     }
 }
