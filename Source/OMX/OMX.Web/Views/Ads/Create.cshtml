@@ -12,7 +12,14 @@
     @Html.EditorFor(a => a.Title)
     @Html.EditorFor(a => a.Content)
     @Html.EditorFor(a => a.SubCategoryId, new { ListItem = Model.SubCategories })
-    @Html.EditorFor(a => a.Price)
+    <div class="divider"></div>
+    <div>
+        @Html.EditorFor(a => a.Price)
+    </div>
+    <div class="divider"></div>
+    <div>
+        @Html.EditorFor(a => a.files)
+    </div>
 
     <input type="submit" class="btn btn-primary" value="Create"/>
 }

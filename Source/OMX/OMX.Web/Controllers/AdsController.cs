@@ -98,15 +98,24 @@
             {
                 var ad = Mapper.Map<Ad>(model);
                 ad.OwnerId = this.User.Identity.GetUserId();
-                if (model.UploadedImages != null)
+                if (model.files.Any())
                 {
-                    using (var memory = new MemoryStream())
+                    foreach (var file in model.files)
                     {
-                        model.UploadedImages.InputStream.CopyTo(memory);
-                        var imgBytes = memory.GetBuffer();
-                        ad.Pictures.Add(new Picture { Content = imgBytes });
+                        using (var memory = new MemoryStream())
+                        {
+                            file.InputStream.CopyTo(memory);
+                            var imgBytes = memory.GetBuffer();
+                            var image = new Picture
+                            {
+                                Content = imgBytes,
+                                OwnerId = this.User.Identity.GetUserId()
+                            };
+                            ad.Pictures.Add(image);
+                        }
                     }
                 }
+
                 this.Data.Ads.Add(ad);
                 this.Data.SaveChanges();
                 return this.RedirectToAction("Index", "Home");

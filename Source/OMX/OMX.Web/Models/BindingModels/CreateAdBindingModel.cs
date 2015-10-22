@@ -42,6 +42,7 @@
 
         public IEnumerable<SelectListItem> SubCategories { get; set; }
 
-        public HttpPostedFileBase UploadedImages { get; set; }
+        [UIHint("MulptipleFile")]
+        public IEnumerable<HttpPostedFileBase> files { get; set; }
     }
 }

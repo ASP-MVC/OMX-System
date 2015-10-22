@@ -1150,6 +1150,7 @@
     <Content Include="Views\Ads\_AdPartial.cshtml" />
     <Content Include="Views\Ads\_AdPicturesPartial.cshtml" />
     <Content Include="Views\Ads\Create.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MulptipleFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Files\" />
