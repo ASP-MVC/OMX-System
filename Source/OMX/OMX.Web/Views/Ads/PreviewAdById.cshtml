@@ -34,10 +34,17 @@
         new AjaxOptions
         {
             UpdateTargetId = "adPicturesContainer",
+            LoadingElementId = "loadingPictures",
             HttpMethod = "GET",
-            InsertionMode = InsertionMode.Replace
+            InsertionMode = InsertionMode.Replace,
+            OnBegin = "ShowLoadingPopup()",
+            OnComplete = "HideLoadingPopup()",
+            OnFailure = "HideLoadingPopup()"
         }, new {@class = "btn btn-primary"})
 
     <div id="adPicturesContainer"></div>
 </div>
 
+@section scripts{
+    @Scripts.Render("~/bundles/custom")
+}
