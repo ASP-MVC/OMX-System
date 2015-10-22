@@ -96,7 +96,8 @@ namespace OMX.Data.Migrations
                         Content = title,
                         SubCategoryId = randomSubCategoryId[0],
                         OwnerId = ownerId[0],
-                        Price = this.omxDataGenerator.GenerateRandomNumber(50, 1000)
+                        Price = this.omxDataGenerator.GenerateRandomNumber(50, 1000),
+                        Visit = this.omxDataGenerator.GenerateRandomNumber(1, 1000)
                     });
                     index++;
                 }
@@ -118,7 +119,11 @@ namespace OMX.Data.Migrations
                         // On every 5 iterations of the loop we are making a query to the db, this will boost the performance a little bit
                         randomCategoryId = context.Categories.OrderBy(x => Guid.NewGuid()).Select(c => c.Id).Take(1).ToList();
                     }
-                    context.SubCategories.AddOrUpdate(new SubCategory { Title = title, CategoryId = randomCategoryId[0] });
+                    context.SubCategories.AddOrUpdate(new SubCategory
+                    {
+                        Title = title, CategoryId = randomCategoryId[0],
+                        Visit = this.omxDataGenerator.GenerateRandomNumber(1, 1000)
+                    });
                     index++;
                 }
                 context.SaveChanges();
@@ -132,7 +137,10 @@ namespace OMX.Data.Migrations
                 var categoryTitles = this.omxDataGenerator.GenerateRandomData(CategoryNameJsonPath);
                 foreach (var title in categoryTitles)
                 {
-                    context.Categories.AddOrUpdate(new Category { Title = title });
+                    context.Categories.AddOrUpdate(new Category
+                    {
+                        Title = title, Visit = this.omxDataGenerator.GenerateRandomNumber(1, 1000)
+                    });
                 }
                 context.SaveChanges();
             }

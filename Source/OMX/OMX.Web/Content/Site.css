@@ -29,9 +29,14 @@ input, select, textarea { max-width: 280px; }
     max-height: 200px;
 }
 
-#loadingPictures {
+#loadingGif {
     display: none;
     position: absolute;
     top: 50%;
     left: 40%;
+}
+
+.category-image {
+    max-width: 15%;
+    display: inline-block;
 }

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     using OMX.Contracts;
@@ -27,6 +28,9 @@
         public string Content { get; set; }
 
         public decimal Price { get; set; }
+
+        [DefaultValue(0)]
+        public int Visit { get; set; }
 
         public bool IsDeleted { get; set; }
 

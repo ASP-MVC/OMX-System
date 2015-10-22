@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     using OMX.Contracts;
@@ -22,6 +23,9 @@
         [Required]
         [StringLength(150, MinimumLength = 2)]
         public string Title { get; set; }
+
+        [DefaultValue(0)]
+        public int Visit { get; set; }
 
         public bool IsDeleted { get; set; }
 

@@ -239,6 +239,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\default.png" />
     <Content Include="Content\Images\loading.gif" />
+    <Content Include="Content\Images\omx-category.png" />
     <Content Include="Content\kendo\Black\editor.png" />
     <Content Include="Content\kendo\Black\imagebrowser.png" />
     <Content Include="Content\kendo\Black\indeterminate.gif" />
@@ -1154,6 +1155,7 @@
     <Content Include="Views\Ads\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\MulptipleFile.cshtml" />
     <Content Include="Views\SubCategories\Create.cshtml" />
+    <Content Include="Views\Shared\_SearchPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Files\" />

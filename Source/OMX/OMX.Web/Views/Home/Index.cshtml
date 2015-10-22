@@ -2,8 +2,25 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    @Html.Action("All", "Categories")
+<div class="jumbotron" id="categoriesContainer">
+    <h2 class="text-center">Top 9 most visited categories</h2>
+    @Html.Action("GetTopCategories", "Categories")
 </div>
-
+<div>
+    @Ajax.ActionLink("View all categories", "All", "Categories", null,
+        new AjaxOptions
+        {
+            UpdateTargetId = "categoriesContainer",
+            LoadingElementId = "loadingGif",
+            HttpMethod = "GET",
+            InsertionMode = InsertionMode.Replace,
+            OnBegin = "ShowLoadingPopup()",
+            OnComplete = "HideLoadingPopup()",
+            OnFailure = "HideLoadingPopup()"
+        }, new { @class = "btn btn-primary" })
+</div>
 <div id="subCategoriesContainer"></div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/custom")
+}

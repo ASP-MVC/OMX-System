@@ -22,10 +22,25 @@
         [HttpGet]
         public ActionResult All()
         {
+            var categories =
+                this.Data.Categories.All()
+                .OrderByDescending(c => c.Visit)
+                .ThenByDescending(c => c.CreatedOn)
+                .Where(c => c.SubCategories.Any())
+                .Project()
+                .To<CategoryViewModel>()
+                .ToList();
+
+            return this.PartialView("_AllCategoriesPartial", categories);
+        }
+
+        [HttpGet]
+        public ActionResult GetTopCategories()
+        {
             var categories = 
                 this.Data.Categories.All()
-                .OrderByDescending(c => c.CreatedOn)
-                .ThenBy(c => c.Id)
+                .OrderByDescending(c => c.Visit)
+                .ThenByDescending(c => c.CreatedOn)
                 .Where(s => s.SubCategories.Any())
                 .Take(TopNineCategories)
                 .Project()

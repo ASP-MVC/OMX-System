@@ -25,6 +25,7 @@
             this.publishedAds = new HashSet<Ad>();
             this.uploadedPictures = new HashSet<Picture>();
         }
+ 
 
         public DateTime CreatedOn { get; set; }
 

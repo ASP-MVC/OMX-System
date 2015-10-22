@@ -1,0 +1,8 @@
+﻿
+@using (Ajax.BeginForm("Test", "Home", null, new AjaxOptions(), new { @class= "navbar-form navbar-left", role="search" }))
+{
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search">
+    </div>
+    <input type="submit" class="btn btn-default" value="Search"/>
+}
