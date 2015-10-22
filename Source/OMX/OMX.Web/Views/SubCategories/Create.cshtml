@@ -1,0 +1,14 @@
+﻿@model OMX.Web.Models.BindingModels.CreateSubCategoryBindingModel
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm("Create", "SubCategories", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.EditorFor(s => s.Title)
+    @Html.EditorFor(s => s.CategoryId, new {ListItem = Model.Categories})
+
+    <input type="submit" value="Create" class="btn btn-primary"/>
+}
+
