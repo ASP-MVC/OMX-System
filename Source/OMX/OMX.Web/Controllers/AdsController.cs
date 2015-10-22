@@ -1,6 +1,5 @@
 ﻿namespace OMX.Web.Controllers
 {
-    using System;
     using System.IO;
     using System.Linq;
     using System.Web.Mvc;
@@ -97,8 +96,9 @@
             if (model != null && this.ModelState.IsValid)
             {
                 var ad = Mapper.Map<Ad>(model);
-                ad.OwnerId = this.User.Identity.GetUserId();
-                if (model.files.Any())
+                var currentUserId = this.User.Identity.GetUserId();
+                ad.OwnerId = currentUserId;
+                if (model.files != null)
                 {
                     foreach (var file in model.files)
                     {
@@ -109,7 +109,7 @@
                             var image = new Picture
                             {
                                 Content = imgBytes,
-                                OwnerId = this.User.Identity.GetUserId()
+                                OwnerId = currentUserId
                             };
                             ad.Pictures.Add(image);
                         }
@@ -121,6 +121,7 @@
                 return this.RedirectToAction("Index", "Home");
             }
 
+            model.SubCategories = this.populator.GetSubCategories();
             return this.View(model);
         }
     }

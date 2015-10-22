@@ -1,5 +1,10 @@
 ﻿@model object
-    
-@(Html.Kendo().Upload()
-            .Name("files")
-)
+
+<br />
+<div class="row">
+    <div class="col-md-2">@Html.Label("Add ad's images")</div>
+    <div class="col-md-5 demo-section k-content">
+        <p>@(Html.Kendo().Upload().Name("files"))</p>
+    </div>
+</div>
+<br />

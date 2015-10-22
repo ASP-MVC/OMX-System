@@ -25,6 +25,7 @@
                 {
                     return this.data.Categories
                        .All()
+                       .OrderBy(x => x.Title)
                        .Select(c => new SelectListItem()
                        {
                            Value = c.Id.ToString(),
@@ -42,6 +43,7 @@
                 {
                     return this.data.SubCategories
                        .All()
+                       .OrderBy(x => x.Title)
                        .Select(c => new SelectListItem()
                        {
                            Value = c.Id.ToString(),
