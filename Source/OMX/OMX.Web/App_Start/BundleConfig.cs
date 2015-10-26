@@ -32,8 +32,7 @@
                         "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/kendo/jquery.min.js",
-                        "~/Scripts/custom/scripts.js"));
+                        "~/Scripts/kendo/jquery.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                         "~/Scripts/custom/scripts.js"));
