@@ -18,6 +18,8 @@
         [UIHint("String")]
         public string UserName { get; set; }
 
+        public string PictureUrl { get; set; }
+        
         [Required]
         [UIHint("EmailAddress")]
         public string Email { get; set; }
