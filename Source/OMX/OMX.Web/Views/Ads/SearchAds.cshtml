@@ -1,0 +1,18 @@
+﻿@model IEnumerable<OMX.Web.Models.ViewModels.AdViewModel>
+@{
+    ViewBag.Title = "SearchAds";
+}
+
+<h2>Results: </h2>
+
+<div class="jumbotron">
+    <h1>Ads</h1>
+    <div class="row">
+        @foreach (var ad in Model)
+        {
+            <div class="col-md-6">
+                <a href="/Ads/PreviewAdById/@ad.Id">@Html.Partial("_AdPartial", ad)</a>
+            </div>
+        }
+    </div>
+</div>

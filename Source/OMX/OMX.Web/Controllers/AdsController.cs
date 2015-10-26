@@ -125,5 +125,20 @@
             model.SubCategories = this.populator.GetSubCategories();
             return this.View(model);
         }
+
+        [HttpGet]
+        public ActionResult SearchAds(SearchAdBindingModel model)
+        {
+            var adsContaingSearchSubstring =
+                    this.Data.Ads.All()
+                        .Where(a =>
+                            a.Title.ToLower().Contains(model.AdSubstring.ToLower()) ||
+                            a.Content.ToLower().Contains(model.AdSubstring.ToLower()))
+                        .Project()
+                        .To<AdViewModel>()
+                        .ToList();
+
+            return this.View(adsContaingSearchSubstring);
+        }
     }
 }

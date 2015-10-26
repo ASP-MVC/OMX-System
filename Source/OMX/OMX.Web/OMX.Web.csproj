@@ -221,6 +221,7 @@
     <Compile Include="Models\BindingModels\AddPictureBindingModel.cs" />
     <Compile Include="Models\BindingModels\CreateAdBindingModel.cs" />
     <Compile Include="Models\BindingModels\CreateSubCategoryBindingModel.cs" />
+    <Compile Include="Models\BindingModels\SearchAdBindingModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\AdViewModel.cs" />
     <Compile Include="Models\ViewModels\MinifiedSubCategoryViewModel.cs" />
@@ -1156,6 +1157,8 @@
     <Content Include="Views\Shared\EditorTemplates\MulptipleFile.cshtml" />
     <Content Include="Views\SubCategories\Create.cshtml" />
     <Content Include="Views\Shared\_SearchPartial.cshtml" />
+    <Content Include="Views\Ads\SearchAds.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SearchField.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Files\" />

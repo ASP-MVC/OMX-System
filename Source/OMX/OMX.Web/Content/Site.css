@@ -40,3 +40,8 @@ input, select, textarea { max-width: 280px; }
     max-width: 15%;
     display: inline-block;
 }
+
+.error {
+    color: red;
+    font-weight: 900;
+}
