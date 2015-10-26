@@ -6,6 +6,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
     using Microsoft.Owin.Security.Cookies;
+    using Microsoft.Owin.Security.Google;
 
     using OMX.Data;
     using OMX.Models;
@@ -74,11 +75,11 @@
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "1024858919710-ku1rqckg9tclis5cekia54rnkb5pc76a.apps.googleusercontent.com",
+                ClientSecret = "YrtyuDrAhgas6mRmhBpIJYhP"
+            });
         }
     }
 }
