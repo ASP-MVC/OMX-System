@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs" />
+    <Compile Include="Comment.cs" />
     <Compile Include="Picture.cs" />
     <Compile Include="Ad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

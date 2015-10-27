@@ -21,6 +21,8 @@
 
         public virtual  IDbSet<Category> Categories { get; set; }
 
+        public virtual  IDbSet<Comment> Comments { get; set; }
+
         public virtual IDbSet<SubCategory> SubCategories { get; set; }
 
         public virtual IDbSet<Ad> Ads { get; set; }

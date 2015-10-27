@@ -33,6 +33,11 @@
             get { return this.GetRepository<User>(); }
         }
 
+        public IDeletableEntityRepository<Comment> Comments
+        {
+            get { return this.GetDeletableEntityRepository<Comment>(); }
+        }
+
         public IDeletableEntityRepository<Ad> Ads
         {
             get { return this.GetDeletableEntityRepository<Ad>(); }

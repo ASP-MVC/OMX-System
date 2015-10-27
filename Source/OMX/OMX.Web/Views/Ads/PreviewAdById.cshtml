@@ -40,11 +40,25 @@
             OnBegin = "ShowLoadingPopup()",
             OnComplete = "HideLoadingPopup()",
             OnFailure = "HideLoadingPopup()"
-        }, new {@class = "btn btn-primary"})
+        }, new { @class = "btn btn-primary" })
 
     <div id="adPicturesContainer"></div>
+    <hr />
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            @using (Ajax.BeginForm("SendComment", "Comments", null,
+                new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    OnSuccess = "ShowSuccessMsg",
+                    OnFailure = "ShowErrorMsg"
+                }, null))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("AdId", Model.Id)
+                @Html.TextArea("Content","", new {@class ="form-control"})
+                <input type="submit" value="Send" class="btn btn-primary"/>
+            }
+        </div>
+    </div>
 </div>
-
-@section scripts{
-    @Scripts.Render("~/bundles/custom")
-}

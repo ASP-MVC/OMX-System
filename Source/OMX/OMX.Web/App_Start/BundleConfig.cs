@@ -34,6 +34,9 @@
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/kendo/jquery.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/noty")
+                .IncludeDirectory("~/Scripts/noty", "*.js", true));
+
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                         "~/Scripts/custom/scripts.js"));
 

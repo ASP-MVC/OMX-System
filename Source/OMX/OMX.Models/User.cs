@@ -18,12 +18,15 @@
 
         private ICollection<Picture> uploadedPictures;
 
+        private ICollection<Comment> comments;
+
         public User()
         {
             // This will prevent UserManager of causing exception when registering new user
             this.CreatedOn = DateTime.Now;
             this.publishedAds = new HashSet<Ad>();
             this.uploadedPictures = new HashSet<Picture>();
+            this.comments = new HashSet<Comment>();
         }
         
         public string PictureUrl { get; set; }
@@ -60,6 +63,18 @@
             set
             {
                 this.uploadedPictures = value;
+            }
+        }
+
+        public virtual ICollection<Comment> Comments
+        {
+            get
+            {
+                return this.comments;
+            }
+            set
+            {
+                this.comments = value;
             }
         }
 

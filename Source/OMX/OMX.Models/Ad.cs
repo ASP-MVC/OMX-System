@@ -12,9 +12,12 @@
     {
         private ICollection<Picture> pictures;
 
+        private ICollection<Comment> comments;
+
         public Ad()
         {
             this.pictures = new HashSet<Picture>();
+            this.comments = new HashSet<Comment>();
         }
 
         [Key]
@@ -44,6 +47,18 @@
         public int SubCategoryId { get; set; }
 
         public virtual SubCategory SubCategory { get; set; }
+
+        public virtual ICollection<Comment> Comments
+        {
+            get
+            {
+                return this.comments;
+            }
+            set
+            {
+                this.comments = value;
+            }
+        }
 
         public virtual ICollection<Picture> Pictures
         {

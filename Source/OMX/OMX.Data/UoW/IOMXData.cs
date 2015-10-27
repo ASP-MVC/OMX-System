@@ -15,6 +15,8 @@
 
         IDeletableEntityRepository<Picture> Pictures { get; }
 
+        IDeletableEntityRepository<Comment> Comments { get; }
+
         IRepository<User> Users { get; }
 
         int SaveChanges();
