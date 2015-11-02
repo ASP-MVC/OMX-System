@@ -1,2 +1,2 @@
 # OMX-System
-Sample online exchange system 
+Sample online exchange system .
