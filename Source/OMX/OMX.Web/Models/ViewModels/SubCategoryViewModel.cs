@@ -5,7 +5,7 @@
 
     using AutoMapper;
 
-    using OMX.Infrastructure.Mapping;
+    using OMX.Infrastructure.Mappings;
     using OMX.Models;
     using OMX.Web.Areas.Administration.Models.ViewModels;
 

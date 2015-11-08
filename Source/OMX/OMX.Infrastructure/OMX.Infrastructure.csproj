@@ -79,14 +79,20 @@
     <Compile Include="Caching\ICacheService.cs" />
     <Compile Include="Caching\InMemoryCache.cs" />
     <Compile Include="HtmlHelpers\KendoHelper.cs" />
-    <Compile Include="Mapping\AutoMapperConfig.cs" />
-    <Compile Include="Mapping\IHaveCustomMappings.cs" />
-    <Compile Include="Mapping\IMapFrom.cs" />
+    <Compile Include="Mappings\AutoMapperConfig.cs" />
+    <Compile Include="Mappings\IHaveCustomMappings.cs" />
+    <Compile Include="Mappings\IMapFrom.cs" />
+    <Compile Include="Mappings\IMapTo.cs" />
+    <Compile Include="Mappings\TypesMap.cs" />
     <Compile Include="Populators\DropDownListPopulator.cs" />
     <Compile Include="Populators\IDropDownListPopulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OMX.Common\OMX.Common.csproj">
+      <Project>{41695524-04AB-4FC7-B6F4-1F499FEFBEC9}</Project>
+      <Name>OMX.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OMX.Contracts\OMX.Contracts.csproj">
       <Project>{262371D1-C7F0-4C4A-A73B-B1EBD9026498}</Project>
       <Name>OMX.Contracts</Name>

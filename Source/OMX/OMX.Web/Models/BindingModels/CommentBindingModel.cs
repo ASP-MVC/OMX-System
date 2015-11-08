@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using OMX.Infrastructure.Mapping;
+    using OMX.Infrastructure.Mappings;
     using OMX.Models;
 
     public class CommentBindingModel : IMapFrom<Comment>

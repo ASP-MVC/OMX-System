@@ -1,4 +1,5 @@
-﻿@using OMX.Infrastructure.HtmlHelpers
+﻿@using OMX.Common
+@using OMX.Infrastructure.HtmlHelpers
 @using OMX.Web.Areas.Administration.Models.ViewModels
 @{
     ViewBag.Title = "Manage Categories";
@@ -7,5 +8,38 @@
 
 <h2>@ViewBag.Title</h2>
 
-@(Html.BuiltFeaturedGrid<CategoryViewModel>(ControllerName, m => m.Id))
+@(Html.Kendo().Grid<CategoryViewModel>()
+    .Name("CategoriesGrid")
+    .Columns(columns =>
+    {
+        columns.Bound(col => col.Id);
+        columns.Bound(col => col.Title);
+        columns.Command(command => command.Edit().Text("Edit").UpdateText("Save").CancelText("Cancel"));
+        columns.Command(command => command.Destroy().Text("Delete"));
+    })
+    .ToolBar(toolbar =>
+    {
+        toolbar.Create().Text("Create");
+    })
+    .Editable(editable =>
+    {
+        editable.Mode(GridEditMode.PopUp);
+        editable.Window(w => w.Title(ViewBag.Title));
+        editable.DisplayDeleteConfirmation("Are you sure you want to delete the category?");
+    })
+    .Pageable(x => x.Refresh(true))
+    .Sortable()
+    .Filterable()
+    .Reorderable(x => x.Columns(true))
+    .Resizable(x => x.Columns(true))
+    .DataSource(x => x.Ajax()
+        .ServerOperation(true)
+        .Model(model => model.Id(m => m.Id))
+        .Create(create => create.Action("Create", ControllerName, new { area = GlobalConstants.AdministrationArea }))
+        .Read(read => read.Action("Read", ControllerName, new { area = GlobalConstants.AdministrationArea }))
+        .Update(update => update.Action("Edit", ControllerName, new { area = GlobalConstants.AdministrationArea }))
+        .Destroy(destroy => destroy.Action("Destroy", ControllerName, new { area = GlobalConstants.AdministrationArea }))
+        )
+
+)
     

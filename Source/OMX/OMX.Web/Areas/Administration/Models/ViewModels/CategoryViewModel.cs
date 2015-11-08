@@ -4,7 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-    using OMX.Infrastructure.Mapping;
+    using OMX.Infrastructure.Mappings;
     using OMX.Models;
 
     public class CategoryViewModel : IMapFrom<Category>

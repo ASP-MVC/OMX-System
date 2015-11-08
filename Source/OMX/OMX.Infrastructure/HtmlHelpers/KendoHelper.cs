@@ -9,7 +9,7 @@
 
     public static class KendoHelper
     {
-        public static GridBuilder<T> BuiltFeaturedGrid<T>(
+        public static GridBuilder<T> BuiltEditReadDeleteGrid<T>(
                 this HtmlHelper helper,
                 string controllerName,
                 Expression<Func<T, object>> modelIdExpression,

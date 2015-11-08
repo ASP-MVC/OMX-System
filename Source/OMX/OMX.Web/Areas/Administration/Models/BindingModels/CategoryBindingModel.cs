@@ -5,18 +5,16 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-    using OMX.Infrastructure.Mapping;
+    using OMX.Infrastructure.Mappings;
     using OMX.Models;
 
-    public class CategoryBindingModel : IMapFrom<Category>
+    public class CategoryBindingModel : IMapTo<Category>
     {
-        [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
         [Required]
         [StringLength(150, MinimumLength = 1)]
         [DisplayName("Category's Title")]
-        [UIHint("SingleLineText")]
         public string Title { get; set; }
     }
 }

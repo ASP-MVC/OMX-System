@@ -5,7 +5,7 @@
 
     using AutoMapper;
 
-    using OMX.Infrastructure.Mapping;
+    using OMX.Infrastructure.Mappings;
     using OMX.Models;
 
     public class UserViewModel : IMapFrom<User>, IHaveCustomMappings

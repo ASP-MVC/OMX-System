@@ -1,4 +1,4 @@
-﻿namespace OMX.Infrastructure.Mapping
+﻿namespace OMX.Infrastructure.Mappings
 {
     using AutoMapper;
 

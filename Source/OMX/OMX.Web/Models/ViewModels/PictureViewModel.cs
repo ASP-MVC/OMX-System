@@ -3,7 +3,7 @@
     using System;
     using System.Web.Mvc;
 
-    using OMX.Infrastructure.Mapping;
+    using OMX.Infrastructure.Mappings;
     using OMX.Models;
 
     public class PictureViewModel : IMapFrom<Picture>

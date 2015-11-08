@@ -7,7 +7,7 @@
     using System.Web;
     using System.Web.Mvc;
 
-    using OMX.Infrastructure.Mapping;
+    using OMX.Infrastructure.Mappings;
     using OMX.Models;
 
     public class CreateAdBindingModel : IMapFrom<Ad>
