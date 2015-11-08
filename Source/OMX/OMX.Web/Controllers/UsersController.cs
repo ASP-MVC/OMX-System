@@ -14,6 +14,7 @@
 
 
     [RoutePrefix("Users")]
+    [Authorize]
     public class UsersController : BaseController
     {
         private const string UserImagesStore = "/Files/UserImages";
@@ -54,6 +55,24 @@
             this.Data.SaveChanges();
 
             return this.RedirectToAction(this.User.Identity.GetUserName(), "Users");
+        }
+
+        [HttpGet]
+        [Route("MyNotifications")]
+        public ActionResult MyNotifications()
+        {
+            if (this.UserProfile != null)
+            {
+                var myNotifications = 
+                    this.UserProfile.RecievedComments
+                    .Where(u => u.IsRead == false)
+                    .AsQueryable()
+                    .ProjectTo<CommentViewModel>()
+                    .ToList();
+                return this.View(myNotifications);
+            }
+
+            return this.RedirectToAction("Login", "Account");
         }
 
         private void SaveFileToFileSystem(HttpPostedFileBase file)

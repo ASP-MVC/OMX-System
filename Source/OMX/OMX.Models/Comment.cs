@@ -1,6 +1,7 @@
 ﻿namespace OMX.Models
 {
     using System;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     using OMX.Contracts;
@@ -16,17 +17,24 @@
 
         public DateTime CommentedAt { get; set; }
 
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
+
+        [DefaultValue(false)]
+        public bool IsRead { get; set; }
+        
         [Required]
         public string AuthorId { get; set; }
 
         public virtual User Author { get; set; }
 
+        public string RecipientId { get; set; }
+
+        public virtual User Recipient { get; set; }
+
         public int? AdId { get; set; }
 
         public virtual Ad Ad { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
     }
 }

@@ -10,7 +10,7 @@
     using OMX.Infrastructure.Mappings;
     using OMX.Models;
 
-    public class CreateAdBindingModel : IMapFrom<Ad>
+    public class CreateAdBindingModel : IMapTo<Ad>
     {
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }

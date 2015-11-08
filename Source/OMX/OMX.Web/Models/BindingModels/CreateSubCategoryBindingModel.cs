@@ -7,7 +7,7 @@
     using OMX.Infrastructure.Mappings;
     using OMX.Models;
 
-    public class CreateSubCategoryBindingModel : IMapFrom<SubCategory>
+    public class CreateSubCategoryBindingModel : IMapTo<SubCategory>
     {
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }

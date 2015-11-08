@@ -18,7 +18,9 @@
 
         private ICollection<Picture> uploadedPictures;
 
-        private ICollection<Comment> comments;
+        private ICollection<Comment> sendComments;
+
+        private ICollection<Comment> recievedComments;
 
         public User()
         {
@@ -26,7 +28,8 @@
             this.CreatedOn = DateTime.Now;
             this.publishedAds = new HashSet<Ad>();
             this.uploadedPictures = new HashSet<Picture>();
-            this.comments = new HashSet<Comment>();
+            this.sendComments = new HashSet<Comment>();
+            this.recievedComments = new HashSet<Comment>();
         }
         
         public string PictureUrl { get; set; }
@@ -66,15 +69,28 @@
             }
         }
 
-        public virtual ICollection<Comment> Comments
+        public virtual ICollection<Comment> RecievedComments
         {
             get
             {
-                return this.comments;
+                return this.recievedComments;
+            }
+
+            set
+            {
+                this.recievedComments = value;
+            }
+        }
+
+        public virtual ICollection<Comment> SendComments
+        {
+            get
+            {
+                return this.sendComments;
             }
             set
             {
-                this.comments = value;
+                this.sendComments = value;
             }
         }
 

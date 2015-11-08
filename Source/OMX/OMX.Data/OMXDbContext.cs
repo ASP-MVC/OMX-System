@@ -58,7 +58,16 @@
         {
             modelBuilder.Conventions.Add(new IsUnicodeAttributeConvention());
 
-            base.OnModelCreating(modelBuilder); // Without this call EntityFramework won't be able to configure the identity model
+            modelBuilder.Entity<Comment>()
+                .HasRequired(x => x.Author)
+                .WithMany(x => x.SendComments)
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Comment>()
+                .HasOptional(x => x.Recipient)
+                .WithMany(x => x.RecievedComments)
+                .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
         }
 
         private void ApplyAuditInfoRules()

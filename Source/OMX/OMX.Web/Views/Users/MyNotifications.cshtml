@@ -1,0 +1,12 @@
+﻿@model IEnumerable<CommentViewModel>
+@{
+    ViewBag.Title = "MyNotifications";
+}
+
+<h2>MyNotifications</h2>
+
+<div class="row">
+    <div class="col-sm-10 col-md-offset-1">
+        @Html.DisplayFor(x => x, "NotificationViewModel")
+    </div>
+</div>

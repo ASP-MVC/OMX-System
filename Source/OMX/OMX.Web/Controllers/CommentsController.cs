@@ -31,7 +31,8 @@
                 AuthorId = this.User.Identity.GetUserId(),
                 CommentedAt = DateTime.Now,
                 Content = model.Content,
-                AdId = model.AdId
+                AdId = model.AdId,
+                RecipientId = model.RecipientId
             };
 
             this.Data.Comments.Add(comment);
@@ -40,6 +41,21 @@
             return this.Json(
                 "Successfully sended your comment!",
                 JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult ReadComment(int id)
+        {
+            var comment = this.Data.Comments.GetById(id);
+            if (comment == null)
+            {
+                return this.HttpNotFound("Comment no longer exists");
+            }
+
+            comment.IsRead = true;
+            this.Data.Comments.Update(comment);
+            this.Data.SaveChanges();
+            return this.Content(string.Empty);
         }
     }
 }

@@ -484,6 +484,8 @@
     <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom\ajaxHelper.js" />
+    <Content Include="Scripts\custom\notificationHelper.js" />
     <Content Include="Scripts\custom\scripts.js" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1072,6 +1074,8 @@
     <Content Include="Views\Shared\_SearchPartial.cshtml" />
     <Content Include="Views\Ads\SearchAds.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SearchField.cshtml" />
+    <Content Include="Views\Users\MyNotifications.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\NotificationViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />

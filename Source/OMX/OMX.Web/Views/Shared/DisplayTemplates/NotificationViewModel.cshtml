@@ -1,0 +1,26 @@
+﻿@model IEnumerable<CommentViewModel>
+
+<div class="bs-component">
+    @foreach (var alert in Model)
+    {
+        var notificationContainerId = "notiContainer" + alert.Id;
+        <div class="alert alert-dismissible alert-info" id="@notificationContainerId">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            @using (Ajax.BeginForm("ReadComment", "Comments", new { alert.Id }, new AjaxOptions
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = notificationContainerId,
+                InsertionMode = InsertionMode.Replace,
+                OnSuccess = "ajaxHelper.hideNotification(" + notificationContainerId + ")"
+            }, new {@class = "pull-right"}))
+            {
+                <input type="submit" value="Read" class="btn btn-success"/>
+            }
+                <h4><span class="badge">Ad: </span> @alert.AdTitle</h4>
+                <strong><span class="badge">sender:</span> @alert.Author.UserName</strong>
+                <p><span class="badge">Comment: </span> @alert.Content</p>
+                <p><span class="badge">Recieved at: </span> @alert.CommentedAt.ToShortDateString()</p>
+        </div>
+            <br />
+    }
+</div>

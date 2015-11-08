@@ -9,6 +9,8 @@
 
     public class CommentViewModel : IMapFrom<Comment>
     {
+        public int Id { get; set; }
+
         [StringLength(1500, MinimumLength = 2)]
         public string Content { get; set; }
 
