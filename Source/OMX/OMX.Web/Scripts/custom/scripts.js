@@ -16,6 +16,15 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    $("#replyForm").validate({
+        rules: {
+            Content: {
+                required: true
+            }
+        }
+    });
+});
 
 function ShowSuccessMsg(data) {
     notificationHelper.showSuccessMessage(data);

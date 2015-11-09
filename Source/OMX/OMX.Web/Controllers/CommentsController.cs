@@ -4,14 +4,12 @@
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.SignalR;
 
     using OMX.Data.UoW;
     using OMX.Models;
-    using OMX.Web.Hubs;
     using OMX.Web.Models.BindingModels;
 
-    [System.Web.Mvc.Authorize]
+    [Authorize]
     public class CommentsController : BaseController
     {
         public CommentsController(IOMXData data)
@@ -61,6 +59,18 @@
             this.Data.SaveChanges();
             this.HubContext.Clients.User(this.User.Identity.GetUserName()).getNotificationsCount();
             return this.Content(string.Empty);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Reply(CommentBindingModel model)
+        {
+            if (model != null && this.ModelState.IsValid)
+            {
+                
+            }
+
+            return null;
         }
     }
 }

@@ -7,11 +7,18 @@
 <div class="jumbotron">
     <h1>Ads</h1>
     <div class="row">
-        @foreach (var ad in Model)
+        @if (Model.Any())
         {
-            <div class="col-md-6">
-                <a href="/Ads/PreviewAdById/@ad.Id">@Html.Partial("_AdPartial", ad)</a>
-            </div>
+            foreach (var ad in Model)
+            {
+                <div class="col-md-6">
+                    <a href="/Ads/PreviewAdById/@ad.Id">@Html.Partial("_AdPartial", ad)</a>
+                </div>
+            }
+        }
+        else
+        {
+            <h2>There are no ads for this category.</h2>
         }
     </div>
 </div>

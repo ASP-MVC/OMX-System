@@ -93,6 +93,18 @@
             return this.RedirectToAction("Login", "Account");
         }
 
+        [HttpGet]
+        [Route("PreviewNotification")]
+        public ActionResult PreviewNotification(int id)
+        {
+            var notification = 
+                this.Data.Comments.All()
+                .Where(c => c.Id == id)
+                .ProjectTo<CommentViewModel>()
+                .ToList();
+            return this.View("DisplayTemplates/NotificationViewModel", notification);
+        }
+
         private void SaveFileToFileSystem(HttpPostedFileBase file)
         {
             if (file != null && file.ContentLength > 0)

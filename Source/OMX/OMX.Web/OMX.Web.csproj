@@ -1088,6 +1088,7 @@
     <Content Include="Views\Shared\EditorTemplates\SearchField.cshtml" />
     <Content Include="Views\Users\MyNotifications.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\NotificationViewModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MiniNotificationViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />

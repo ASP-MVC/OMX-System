@@ -1,0 +1,18 @@
+﻿@model IEnumerable<CommentViewModel>
+
+<div class="bs-component">
+    @foreach (var alert in Model)
+    {
+        var notificationContainerId = "notiContainer" + alert.Id;
+        <div class="alert alert-dismissible alert-info" id="@notificationContainerId">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <a href="@Url.Action("PreviewNotification", "Users", new { id = alert.Id })">
+                <h4 style="color:#2c3e50" class="text-center">
+                    You have new message from @alert.Author.UserName regarding Ad [ @alert.AdTitle ] !
+                </h4>
+            </a>
+            <div class="clearfix"></div>
+        </div>
+        <br />
+    }
+</div>
