@@ -2,19 +2,22 @@
 {
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
 
     using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.SignalR;
 
     using OMX.Data.UoW;
+    using OMX.Web.Hubs;
     using OMX.Web.Models.ViewModels;
 
 
     [RoutePrefix("Users")]
-    [Authorize]
+    [System.Web.Mvc.Authorize]
     public class UsersController : BaseController
     {
         private const string UserImagesStore = "/Files/UserImages";
@@ -55,6 +58,21 @@
             this.Data.SaveChanges();
 
             return this.RedirectToAction(this.User.Identity.GetUserName(), "Users");
+        }
+
+        [HttpGet]
+        [Route("GetUnreadNotifications")]
+        public ActionResult GetUnreadNotifications()
+        {
+            if (this.UserProfile == null)
+            {
+                return null;
+            }
+            var unreadNotifications = 
+                this.UserProfile.RecievedComments
+                    .Count(c => c.IsRead == false);
+
+            return this.Json(new {unreadMsgs = unreadNotifications}, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

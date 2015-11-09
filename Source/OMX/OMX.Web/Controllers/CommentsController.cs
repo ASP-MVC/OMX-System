@@ -4,12 +4,14 @@
     using System.Web.Mvc;
 
     using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.SignalR;
 
     using OMX.Data.UoW;
     using OMX.Models;
+    using OMX.Web.Hubs;
     using OMX.Web.Models.BindingModels;
 
-    [Authorize]
+    [System.Web.Mvc.Authorize]
     public class CommentsController : BaseController
     {
         public CommentsController(IOMXData data)
@@ -38,6 +40,8 @@
             this.Data.Comments.Add(comment);
             this.Data.SaveChanges();
 
+            this.HubContext.Clients.User(this.User.Identity.GetUserName()).getNotificationsCount();
+
             return this.Json(
                 "Successfully sended your comment!",
                 JsonRequestBehavior.AllowGet);
@@ -55,6 +59,7 @@
             comment.IsRead = true;
             this.Data.Comments.Update(comment);
             this.Data.SaveChanges();
+            this.HubContext.Clients.User(this.User.Identity.GetUserName()).getNotificationsCount();
             return this.Content(string.Empty);
         }
     }

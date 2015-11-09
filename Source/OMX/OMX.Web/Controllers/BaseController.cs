@@ -5,15 +5,21 @@
     using System.Web.Mvc;
     using System.Web.Routing;
 
+    using Microsoft.AspNet.SignalR;
+
     using OMX.Data.UoW;
     using OMX.Models;
+    using OMX.Web.Hubs;
 
     public class BaseController : Controller
     {
         public BaseController(IOMXData data)
         {
             this.Data = data;
+            this.HubContext = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
         }
+
+        protected IHubContext HubContext { get; private set; }
 
         protected IOMXData Data { get; private set; }
 
