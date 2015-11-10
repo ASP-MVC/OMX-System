@@ -22,18 +22,23 @@
                 <strong><span class="label label-primary">Sender:</span> @alert.Author.UserName</strong>
                 <p><span class="label label-primary">Recieved at: </span> @alert.CommentedAt.ToShortDateString()</p>
             </div>
-        </div>
-        <div>
-            @using (Html.BeginForm("Reply", "Comments", FormMethod.Post, new {id = "replyForm"}))
-            {
-                @Html.AntiForgeryToken()
-                @Html.Hidden("AdId", alert.AdId)
-                @Html.Hidden("RecipientId", alert.Author.Id)
-                @Html.Label("Reply to " + alert.Author.UserName)
-                @Html.TextArea("Content", "", new {@class = "form-control"})
+            <div>
+                @using (Ajax.BeginForm("Reply", "Comments", null, new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    OnSuccess = "ajaxHelper.showReplySuccess",
+                    OnFailure = "ajaxHelper.showReplyFailed"
+                }, new { id = "replyForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("AdId", alert.AdId)
+                    @Html.Hidden("RecipientId", alert.Author.Id)
+                    @Html.Label("Reply to " + alert.Author.UserName)
+                    @Html.TextArea("Content", "", new { @class = "form-control", id = "replyTextBox" })
 
-                <input type="submit" value="Reply" class="btn btn-success"/>
-            }
+                    <input type="submit" value="Reply" class="btn btn-success" />
+                }
+            </div>
         </div>
     }
 </div>

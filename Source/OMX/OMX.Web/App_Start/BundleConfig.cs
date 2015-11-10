@@ -38,9 +38,9 @@
                 .IncludeDirectory("~/Scripts/noty", "*.js", true));
 
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
+                        "~/Scripts/custom/notificationHelper.js").Include(
                         "~/Scripts/custom/scripts.js").Include(
-                        "~/Scripts/custom/ajaxHelper.js").Include(
-                        "~/Scripts/custom/notificationHelper.js"));
+                        "~/Scripts/custom/ajaxHelper.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.js"));

@@ -3,6 +3,8 @@
     using System;
     using System.Web.Mvc;
 
+    using AutoMapper;
+
     using Microsoft.AspNet.Identity;
 
     using OMX.Data.UoW;
@@ -67,10 +69,15 @@
         {
             if (model != null && this.ModelState.IsValid)
             {
-                
+                var comment = Mapper.Map<Comment>(model);
+                comment.CommentedAt = DateTime.Now;
+                comment.AuthorId = this.UserProfile.Id;
+                this.Data.Comments.Add(comment);
+                this.Data.SaveChanges();
+                return this.Json(new { msg = "Successfully replied"}, JsonRequestBehavior.AllowGet);
             }
 
-            return null;
+            return this.Json(new {msg ="Error during sending a reply."}, JsonRequestBehavior.AllowGet);
         }
     }
 }
