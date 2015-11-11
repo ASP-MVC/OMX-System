@@ -1,0 +1,24 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<AdViewModel>
+
+<div class="col-sm-12">
+    @if (Model.Any())
+    {
+        foreach (var ad in Model)
+        {
+            <div class="col-md-6">
+                <a href="/Ads/PreviewAdById/@ad.Id">@Html.Partial("_AdPartial", ad)</a>
+            </div>
+        }
+    }
+    else
+    {
+        <h2>There are no ads for this category.</h2>
+    }
+</div>
+<hr/>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action(ViewBag.ActionName, ViewBag.ControllerName,
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -1078,7 +1078,7 @@
     <Content Include="Views\Shared\_SubCategoriesPartial.cshtml" />
     <Content Include="Views\Ads\Ads.cshtml" />
     <Content Include="Views\Ads\PreviewAdById.cshtml" />
-    <Content Include="Views\Ads\_AdPartial.cshtml" />
+    <Content Include="Views\Shared\_AdPartial.cshtml" />
     <Content Include="Views\Ads\_AdPicturesPartial.cshtml" />
     <Content Include="Views\Ads\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\MulptipleFile.cshtml" />
@@ -1089,6 +1089,8 @@
     <Content Include="Views\Users\MyNotifications.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\NotificationViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MiniNotificationViewModel.cshtml" />
+    <Content Include="Views\Users\MyAds.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\AdsViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />

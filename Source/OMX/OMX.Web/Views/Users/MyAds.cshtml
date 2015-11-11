@@ -1,0 +1,11 @@
+﻿@model PagedList.IPagedList<AdViewModel>
+@{
+    ViewBag.Title = "MyAds";
+}
+
+<div class="jumbotron">
+    <h2>@ViewBag.Title</h2>
+    <div class="row">
+        @Html.DisplayFor(x => x, "AdsViewModel")
+    </div>
+</div>

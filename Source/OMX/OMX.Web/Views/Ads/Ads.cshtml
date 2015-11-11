@@ -1,30 +1,13 @@
-﻿@using PagedList.Mvc
-@model PagedList.IPagedList<OMX.Web.Models.ViewModels.AdViewModel>
+﻿@model PagedList.IPagedList<AdViewModel>
 @{
     ViewBag.Title = "Ads";
+    ViewBag.ActionName = "Ads";
+    ViewBag.ControllerName = "Ads";
 }
 
 <div class="jumbotron">
     <h1>Ads</h1>
     <div class="row">
-        @if (Model.Any())
-        {
-            foreach (var ad in Model)
-            {
-                <div class="col-md-6">
-                    <a href="/Ads/PreviewAdById/@ad.Id">@Html.Partial("_AdPartial", ad)</a>
-                </div>
-            }
-        }
-        else
-        {
-            <h2>There are no ads for this category.</h2>
-        }
+        @Html.DisplayFor(x=>x, "AdsViewModel",new { ViewBag })
     </div>
 </div>
-<br/>
-
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@Html.PagedListPager(Model, page => Url.Action("Ads",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
