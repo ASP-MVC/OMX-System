@@ -1,4 +1,5 @@
-﻿@model OMX.Web.Models.ViewModels.AdViewModel
+﻿@using Microsoft.AspNet.Identity
+@model AdViewModel
 @{
     ViewBag.Title = "PreviewAdById";
 }
@@ -6,6 +7,15 @@
 <div class="jumbotron">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            @if (Model.Owner.Id == User.Identity.GetUserId())
+            {
+                <div class="pull-right">
+                    @Html.ActionLink("Edit", "Edit", "Ads", new { id = Model.Id }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Delete", "Delete", "Ads", new { id = Model.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete this Ad?');" })
+                </div>
+                <div class="clearfix"></div>
+                <hr />
+            }
             @Html.Partial("_AdPartial", @Model)
         </div>
     </div>

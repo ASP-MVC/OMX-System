@@ -17,6 +17,6 @@
     return {
         hideNotification: hideNotification,
         showReplySuccess: showReplySuccess,
-        showReplyFailed: showReplyFailed
+        showReplyFailed: showReplyFailed,
     }
 })();

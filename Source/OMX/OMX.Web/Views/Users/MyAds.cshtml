@@ -3,6 +3,14 @@
     ViewBag.Title = "MyAds";
 }
 
+@if (TempData.ContainsKey("message"))
+{
+    <div class="alert alert-dismissible alert-info">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>@TempData["message"]</strong>
+    </div>
+}
+
 <div class="jumbotron">
     <h2>@ViewBag.Title</h2>
     <div class="row">

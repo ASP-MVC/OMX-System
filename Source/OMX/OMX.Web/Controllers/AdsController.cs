@@ -1,5 +1,6 @@
 ﻿namespace OMX.Web.Controllers
 {
+    using System;
     using System.IO;
     using System.Linq;
     using System.Threading;
@@ -139,6 +140,31 @@
                         .ToList();
 
             return this.View(adsContaingSearchSubstring);
+        }
+
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            var ad = this.Data.Ads.GetById(id);
+            if (ad == null)
+            {
+                return this.HttpNotFound("Ad no longer existts");
+            }
+            var hasAuthorizationForDelete = 
+                ad.OwnerId == this.UserProfile.Id || this.User.IsInRole(GlobalConstants.AdminRole);
+            if (hasAuthorizationForDelete)
+            {
+                ad.IsDeleted = true;
+                ad.DeletedOn = DateTime.Now;
+                this.Data.SaveChanges();
+                this.TempData["message"] = "You have successfully deleted your Ad";
+                return this.RedirectToAction("MyAds", "Users");
+            }
+            else
+            {
+                return this.Content("Error during ad's deletion");
+            }
         }
     }
 }
