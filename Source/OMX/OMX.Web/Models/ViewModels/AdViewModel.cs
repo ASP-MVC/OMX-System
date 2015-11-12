@@ -26,6 +26,8 @@
         [UIHint("DateTime")]
         public DateTime CreatedOn { get; set; }
 
+        public int Visit { get; set; }
+
         [HiddenInput(DisplayValue =  false)]
         public bool IsDeleted { get; set; }
 

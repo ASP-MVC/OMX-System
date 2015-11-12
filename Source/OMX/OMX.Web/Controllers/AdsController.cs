@@ -56,7 +56,7 @@
             {
                 return this.HttpNotFound("Ad no longer exists");
             }
-
+            this.IncrementVisitsCount(ad);
             var viewModel = Mapper.Map<AdViewModel>(ad);
 
             return this.View(viewModel);
@@ -182,7 +182,11 @@
             if (model != null && this.ModelState.IsValid)
             {
                 var ad = Mapper.Map<Ad>(model);
-                ad.OwnerId = this.UserProfile.Id;
+                if (ad.OwnerId != this.UserProfile.Id && !this.User.IsInRole(GlobalConstants.AdminRole))
+                {
+                    this.TempData["message"] = SystemMessages.AdEditFailure;
+                    return this.RedirectToAction("MyAds", "Users");
+                }
                 ad.ModifiedOn = DateTime.Now;
                 ad.CreatedOn = DateTime.Now;
                 if (model.files != null)
@@ -196,6 +200,7 @@
                 }
                 this.Data.Ads.Update(ad);
                 this.Data.SaveChanges();
+                this.TempData["message"] = SystemMessages.AdEditSuccess;
                 return this.RedirectToAction("MyAds", "Users");
             }
 
@@ -218,6 +223,13 @@
             this.Data.Pictures.Add(image);
             this.Data.SaveChanges();
             return image;
+        }
+
+        private void IncrementVisitsCount(Ad ad)
+        {
+            ad.Visit = ad.Visit + 1;
+            this.Data.Ads.Update(ad);
+            this.Data.SaveChanges();
         }
     }
 }

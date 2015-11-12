@@ -25,7 +25,7 @@
         [UIHint("Currency")]
         public decimal Price { get; set; }
 
-        public UserViewModel Owner { get; set; }
+        public string OwnerId { get; set; }
 
         [DisplayName("Sub Category")]
         [UIHint("DropDownList")]
@@ -41,7 +41,6 @@
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Ad, EditAdViewModel>()
-                .ForMember(a => a.Owner, opt => opt.MapFrom(a => a.Owner))
                 .ForMember(a => a.Pictures, opt => opt.MapFrom(a => a.Pictures))
                 .ReverseMap();
         }

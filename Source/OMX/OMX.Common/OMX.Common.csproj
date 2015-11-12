@@ -53,6 +53,7 @@
     <Compile Include="RandomGenerator\DTO\ObjectStructureDTO.cs" />
     <Compile Include="RandomGenerator\IRandomOMXDataGenerator.cs" />
     <Compile Include="RandomGenerator\RandomDataGenerator.cs" />
+    <Compile Include="SystemMessages.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

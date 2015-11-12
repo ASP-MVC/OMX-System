@@ -7,7 +7,7 @@
 <div class="jumbotron">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            @if (Model.Owner.Id == User.Identity.GetUserId())
+            @if (Model.Owner.Id == User.Identity.GetUserId() || User.IsInRole(GlobalConstants.AdminRole))
             {
                 <div class="pull-right">
                     @Html.ActionLink("Edit", "Edit", "Ads", new { id = Model.Id }, new { @class = "btn btn-success" })
@@ -30,6 +30,7 @@
                 </span>
                 <div class="clearfix"></div>
             </div>
+            <div class="label label-success">Visits: @Model.Visit</div>
         </div>
     </div>
     <div class="row">
