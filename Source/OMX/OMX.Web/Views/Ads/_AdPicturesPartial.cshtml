@@ -3,9 +3,13 @@
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-body">
-            @if (Model != null)
+            @if (Model != null && Model.Any())
             {
                 @Html.DisplayFor(x => x, "MiniPictureViewModel")
+            }
+            else
+            {
+                <p class="text-center">There are no pictures uploaded for this ad.</p>
             }
         </div>
     </div>

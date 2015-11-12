@@ -32,13 +32,10 @@
 </div>
 <div class="container body-content">
     @RenderBody()
-    <img src="~/Content/Images/loading.gif" id="loadingGif" alt="gif" />
+    <img src="~/Content/Images/loading.gif" id="loadingGif" alt="gif"/>
     <hr/>
-    <footer class="text-center">
-        <p>&copy; @DateTime.Now.Year - OMX</p>
-    </footer>
+    @Html.Partial("_FooterPartial")
 </div>
-
 @Scripts.Render("~/bundles/bootstrap")
 @Scripts.Render("~/bundles/jqueryajax")
 @Scripts.Render("~/bundles/jqueryval")
@@ -47,7 +44,8 @@
 @Scripts.Render("~/bundles/noty")
 @Scripts.Render("~/bundles/custom")
 @Scripts.Render("~/bundles/kendo")
-
 @RenderSection("scripts", required: false)
+
+    <span id="back-to-top"><img src="~/Content/Images/back-top-hand.png" /></span>
 </body>
 </html>

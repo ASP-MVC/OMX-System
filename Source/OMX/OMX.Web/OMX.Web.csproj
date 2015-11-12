@@ -258,6 +258,7 @@
     <Content Include="Content\Images\default.png" />
     <Content Include="Content\Images\loading.gif" />
     <Content Include="Content\Images\omx-category.png" />
+    <Content Include="Content\Images\back-top-hand.png" />
     <Content Include="Content\kendo\Black\editor.png" />
     <Content Include="Content\kendo\Black\imagebrowser.png" />
     <Content Include="Content\kendo\Black\indeterminate.gif" />
@@ -1098,6 +1099,7 @@
     <Content Include="Views\Shared\DisplayTemplates\AdsViewModel.cshtml" />
     <Content Include="Views\Ads\Edit.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MiniPictureViewModel.cshtml" />
+    <Content Include="Views\Shared\_FooterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
