@@ -1,17 +1,24 @@
 ﻿@using OMX.Common
+
 @{
-    ViewBag.Title = "Manage Categories";
-    const string ControllerName = "Categories";
+    ViewBag.Title = "Manage Ads";
+    const string ControllerName = "KendoAds";
 }
 
 <h2>@ViewBag.Title</h2>
 
-@(Html.Kendo().Grid<CategoryViewModel>()
-    .Name("CategoriesGrid")
+@(Html.Kendo().Grid<AdminAdViewModel>()
+    .Name("AdsGrid")
     .Columns(columns =>
     {
-        columns.Bound(col => col.Id);
-        columns.Bound(col => col.Title);
+        columns.Bound(x => x.Id);
+        columns.Bound(x => x.Title);
+        columns.Bound(x => x.Content);
+        columns.Bound(x => x.Price);
+        columns.Bound(x => x.IsDeleted);
+        columns.Bound(x => x.OwnerUserName);
+        columns.Bound(x => x.SubCategoryName);
+        
         columns.Command(command => command.Edit().Text("Edit").UpdateText("Save").CancelText("Cancel"));
         columns.Command(command => command.Destroy().Text("Delete"));
     })
@@ -23,7 +30,7 @@
     {
         editable.Mode(GridEditMode.PopUp);
         editable.Window(w => w.Title(ViewBag.Title));
-        editable.DisplayDeleteConfirmation("Are you sure you want to delete the category?");
+        editable.DisplayDeleteConfirmation("Are you sure you want to delete the ad?");
     })
     .Pageable(x => x.Refresh(true))
     .Sortable()
@@ -38,6 +45,4 @@
         .Update(update => update.Action("Edit", ControllerName, new { area = GlobalConstants.AdministrationArea }))
         .Destroy(destroy => destroy.Action("Destroy", ControllerName, new { area = GlobalConstants.AdministrationArea }))
         )
-
 )
-    
