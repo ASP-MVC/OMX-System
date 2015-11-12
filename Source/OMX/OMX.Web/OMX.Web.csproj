@@ -237,6 +237,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ViewModels\AdViewModel.cs" />
     <Compile Include="Models\ViewModels\CommentViewModel.cs" />
+    <Compile Include="Models\ViewModels\EditAdViewModel.cs" />
     <Compile Include="Models\ViewModels\MinifiedSubCategoryViewModel.cs" />
     <Compile Include="Models\ViewModels\PictureViewModel.cs" />
     <Compile Include="Models\ViewModels\SubCategoryViewModel.cs" />
@@ -1091,6 +1092,8 @@
     <Content Include="Views\Shared\DisplayTemplates\MiniNotificationViewModel.cshtml" />
     <Content Include="Views\Users\MyAds.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\AdsViewModel.cshtml" />
+    <Content Include="Views\Ads\Edit.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MiniPictureViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />

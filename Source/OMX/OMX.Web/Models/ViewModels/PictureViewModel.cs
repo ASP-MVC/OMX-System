@@ -12,6 +12,8 @@
 
         public string Url { get; set; }
 
+        public byte[] Content { get; set; }
+
         [HiddenInput(DisplayValue = false)]
         public bool IsDeleted { get; set; }
 

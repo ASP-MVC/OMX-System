@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
     using System.Web.Mvc;
 
     using AutoMapper;
@@ -10,7 +12,7 @@
     using OMX.Infrastructure.Mappings;
     using OMX.Models;
 
-    public class AdViewModel : IMapFrom<Ad>, IHaveCustomMappings
+    public class EditAdViewModel : IMapFrom<Ad>, IMapTo<Ad>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -23,28 +25,24 @@
         [UIHint("Currency")]
         public decimal Price { get; set; }
 
-        [UIHint("DateTime")]
-        public DateTime CreatedOn { get; set; }
-
-        [HiddenInput(DisplayValue =  false)]
-        public bool IsDeleted { get; set; }
-
-        [HiddenInput(DisplayValue = false)]
-        public DateTime? DeletedOn { get; set; }
-        
         public UserViewModel Owner { get; set; }
 
-        [UIHint("SingleLineText")]
-        public string CategoryName { get; set; }
+        [DisplayName("Sub Category")]
+        [UIHint("DropDownList")]
+        public int SubCategoryId { get; set; }
+
+        public IEnumerable<SelectListItem> SubCategories { get; set; }
 
         public IEnumerable<PictureViewModel> Pictures { get; set; }
 
+        [UIHint("MulptipleFile")]
+        public IEnumerable<HttpPostedFileBase> files { get; set; }
+
         public void CreateMappings(IConfiguration configuration)
         {
-            configuration.CreateMap<Ad, AdViewModel>()
-                .ForMember(a => a.Owner, opt=>opt.MapFrom(a => a.Owner))
-                .ForMember(a => a.CategoryName, opt=>opt.MapFrom(a => a.SubCategory.Category.Title))
-                .ForMember(a => a.Pictures, opt=>opt.MapFrom(a => a.Pictures))
+            configuration.CreateMap<Ad, EditAdViewModel>()
+                .ForMember(a => a.Owner, opt => opt.MapFrom(a => a.Owner))
+                .ForMember(a => a.Pictures, opt => opt.MapFrom(a => a.Pictures))
                 .ReverseMap();
         }
     }

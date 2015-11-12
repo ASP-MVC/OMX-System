@@ -1,5 +1,5 @@
 ﻿@model AdViewModel
-<div class="panel panel-warning">
+<div class="panel panel-warning ad-container">
     <div class="panel-heading">
         <h2 class="panel-title">
             @Model.Title
@@ -9,7 +9,15 @@
     <div class="panel-body">
         @if (Model.Pictures.Any())
         {
-            <img src="@Model.Pictures.First().Url" alt="image" class="img-thumbnail ad-image" />
+            if (Model.Pictures.First().Url == null)
+            {
+                var url = Convert.ToBase64String(Model.Pictures.First().Content);
+                <img src="data:image/png;base64,@url" alt="image" class="img-thumbnail ad-image"/>
+            }
+            else
+            {
+                <img src="@Model.Pictures.First().Url" alt="image" class="img-thumbnail ad-image" />
+            }
         }
         else
         {

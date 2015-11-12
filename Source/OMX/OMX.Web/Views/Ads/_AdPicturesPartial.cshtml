@@ -1,11 +1,11 @@
-﻿@model IEnumerable<OMX.Web.Models.ViewModels.PictureViewModel>
+﻿@model IEnumerable<PictureViewModel>
 
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-body">
-            @foreach (var picture in Model)
+            @if (Model != null)
             {
-                <img src="@picture.Url" alt="picture" class="ad-image"/>
+                @Html.DisplayFor(x => x, "MiniPictureViewModel")
             }
         </div>
     </div>

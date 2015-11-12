@@ -1,0 +1,40 @@
+﻿@model EditAdViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Ads", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.EditorFor(x => x.Title)
+    @Html.EditorFor(x => x.Content)
+    @Html.EditorFor(x => x.Price)
+    <br/>
+    <div class="well">
+        @Html.Label("Pictures: ", new {@class ="control-label"})
+        @Html.DisplayFor(x => x.Pictures, "MiniPictureViewModel")
+    </div>
+    <br/>
+    @Html.EditorFor(x => x.SubCategoryId, new { ListItem = Model.SubCategories })
+    <br/>
+
+    @Html.EditorFor(x => x.files)
+
+    <input type="submit" value="Edit" class="btn btn-success" />
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#SubCategoryId option").each(function(k, v) {
+                if (v.getAttribute('value') == @Model.SubCategoryId) {
+                    v.setAttribute("selected", "selected");
+            }
+            });
+        });
+    </script>
+}

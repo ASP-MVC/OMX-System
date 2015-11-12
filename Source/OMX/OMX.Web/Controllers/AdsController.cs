@@ -4,6 +4,7 @@
     using System.IO;
     using System.Linq;
     using System.Threading;
+    using System.Web;
     using System.Web.Mvc;
 
     using AutoMapper;
@@ -20,6 +21,7 @@
 
     using PagedList;
 
+    [Authorize]
     public class AdsController : BaseController
     {
         private IDropDownListPopulator populator;
@@ -31,6 +33,7 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Ads(int id, int page = 1)
         {
             var ads =
@@ -45,6 +48,7 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult PreviewAdById(int id)
         {
             var ad = this.Data.Ads.GetById(id);
@@ -59,6 +63,7 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult AdPictures(int id)
         {
             var ad = this.Data.Ads.GetById(id);
@@ -79,7 +84,6 @@
         }
 
         [HttpGet]
-        [Authorize]
         public ActionResult Create()
         {
             var adsBindingModel = new CreateAdBindingModel()
@@ -91,7 +95,6 @@
         }
 
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateAdBindingModel model)
         {
@@ -104,17 +107,8 @@
                 {
                     foreach (var file in model.files)
                     {
-                        using (var memory = new MemoryStream())
-                        {
-                            file.InputStream.CopyTo(memory);
-                            var imgBytes = memory.GetBuffer();
-                            var image = new Picture
-                            {
-                                Content = imgBytes,
-                                OwnerId = currentUserId
-                            };
-                            ad.Pictures.Add(image);
-                        }
+                        var picture = this.ConvertBytesToPicture(file);
+                        ad.Pictures.Add(picture);
                     }
                 }
 
@@ -128,6 +122,7 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult SearchAds(SearchAdBindingModel model)
         {
             var adsContaingSearchSubstring =
@@ -141,8 +136,7 @@
 
             return this.View(adsContaingSearchSubstring);
         }
-
-
+        
         [HttpGet]
         public ActionResult Delete(int id)
         {
@@ -165,6 +159,65 @@
             {
                 return this.Content("Error during ad's deletion");
             }
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var ad = this.Data.Ads.GetById(id);
+            if (ad == null)
+            {
+                return this.HttpNotFound("Ad no longer exists");
+            }
+            var viewModel = Mapper.Map<EditAdViewModel>(ad);
+            viewModel.SubCategories = this.populator.GetSubCategories();
+            
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EditAdViewModel model)
+        {
+            if (model != null && this.ModelState.IsValid)
+            {
+                var ad = Mapper.Map<Ad>(model);
+                ad.OwnerId = this.UserProfile.Id;
+                ad.ModifiedOn = DateTime.Now;
+                ad.CreatedOn = DateTime.Now;
+                if (model.files != null)
+                {
+                    foreach (var file in model.files)
+                    {
+                        var picture = this.ConvertBytesToPicture(file);
+                        picture.AdId = ad.Id;
+                        ad.Pictures.Add(picture);
+                    }
+                }
+                this.Data.Ads.Update(ad);
+                this.Data.SaveChanges();
+                return this.RedirectToAction("MyAds", "Users");
+            }
+
+            return this.View(model);
+        }
+
+        private Picture ConvertBytesToPicture(HttpPostedFileBase file)
+        {
+            Picture image = null;
+            using (var memory = new MemoryStream())
+            {
+                file.InputStream.CopyTo(memory);
+                var imgBytes = memory.GetBuffer();
+                image = new Picture
+                {
+                    Content = imgBytes,
+                    OwnerId = this.UserProfile.Id
+                };
+            }
+            this.Data.Pictures.Add(image);
+            this.Data.SaveChanges();
+            return image;
         }
     }
 }
