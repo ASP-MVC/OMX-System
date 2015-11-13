@@ -76,6 +76,7 @@
             var pictures = 
                 ad
                 .Pictures
+                .Where(p => p.IsDeleted == false)
                 .AsQueryable()
                 .Project()
                 .To<PictureViewModel>()
@@ -108,6 +109,11 @@
                 {
                     foreach (var file in model.files)
                     {
+                        if (!ImageValidator.IsValidImage(model.files))
+                        {
+                            this.TempData["message-err"] = SystemMessages.InvalidImage;
+                            return this.RedirectToAction("MyAds", "Users");
+                        }
                         var picture = this.ConvertBytesToPicture(file);
                         ad.Pictures.Add(picture);
                     }

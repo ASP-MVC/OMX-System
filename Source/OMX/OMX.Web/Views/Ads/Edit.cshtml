@@ -15,7 +15,7 @@
     <br/>
     <div class="well">
         @Html.Label("Pictures: ", new {@class ="control-label"})
-        @Html.DisplayFor(x => x.Pictures, "MiniPictureViewModel")
+        @Html.DisplayFor(x => x.Pictures, "MiniPictureWithDeleteViewModel")
     </div>
     <br/>
     @Html.EditorFor(x => x.SubCategoryId, new { ListItem = Model.SubCategories })

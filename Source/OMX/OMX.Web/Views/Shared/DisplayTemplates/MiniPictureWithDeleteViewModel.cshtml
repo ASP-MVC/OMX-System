@@ -1,0 +1,33 @@
+﻿@model IEnumerable<PictureViewModel>
+
+<div class="row">
+    @foreach (var pic in Model)
+    {
+        var pictureContainerId = "pictureContainer" + pic.Id;
+        <div class="col-md-2" id="@pictureContainerId">
+            @Ajax.ActionLink("Remove", "Delete", "Pictures", new { id = pic.Id },
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    UpdateTargetId = pictureContainerId,
+                    InsertionMode = InsertionMode.Replace,
+                    Confirm = "Are you sure that you want to remove this picture?",
+                    OnSuccess = "ajaxHelper.showPictureRemoveSuccess",
+                    OnFailure = "ajaxHelper.showPictureRemoveFailure"
+                },
+                new { @class = "label label-danger pull-right" })
+            @if (pic.Url != null)
+            {
+                <img src="@pic.Url" alt="ASP-NET-PICTURE" class="img-thumbnail" />
+            }
+            else
+            {
+                var url = Convert.ToBase64String(pic.Content);
+                //TODO
+                <img src="data:image/png;base64,@url" alt="ASP-NET-PICTURE" class="img-thumbnail" />
+            }
+        </div>
+    }
+</div>
+
+

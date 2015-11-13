@@ -225,6 +225,7 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PicturesController.cs" />
     <Compile Include="Controllers\SubCategoriesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1100,6 +1101,7 @@
     <Content Include="Views\Ads\Edit.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MiniPictureViewModel.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MiniPictureWithDeleteViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -1251,6 +1253,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Comments\" />
+    <Folder Include="Views\Pictures\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

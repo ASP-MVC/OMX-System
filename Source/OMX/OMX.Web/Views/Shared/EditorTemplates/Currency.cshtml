@@ -6,10 +6,9 @@
     </div>
     <div class="col-md-5">
         @(Html.Kendo().CurrencyTextBoxFor(m => m)
+            .Culture("bg-BG")
             .Min(0)
             .Placeholder("Enter price...")
         )
     </div>
 </div>
-
-
