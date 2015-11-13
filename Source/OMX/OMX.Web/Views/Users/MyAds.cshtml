@@ -5,9 +5,16 @@
 
 @if (TempData.ContainsKey("message"))
 {
-    <div class="alert alert-dismissible alert-info">
+    <div class="alert alert-dismissible alert-success">
         <button type="button" class="close" data-dismiss="alert">×</button>
         <strong>@TempData["message"]</strong>
+    </div>
+}
+@if (TempData.ContainsKey("message-err"))
+{
+    <div class="alert alert-dismissible alert-danger">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>@TempData["message-err"]</strong>
     </div>
 }
 

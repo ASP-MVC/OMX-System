@@ -15,6 +15,7 @@
     using OMX.Common;
     using OMX.Data.UoW;
     using OMX.Infrastructure.Populators;
+    using OMX.Infrastructure.Validators;
     using OMX.Models;
     using OMX.Web.Models.BindingModels;
     using OMX.Web.Models.ViewModels;
@@ -184,13 +185,18 @@
                 var ad = Mapper.Map<Ad>(model);
                 if (ad.OwnerId != this.UserProfile.Id && !this.User.IsInRole(GlobalConstants.AdminRole))
                 {
-                    this.TempData["message"] = SystemMessages.AdEditFailure;
+                    this.TempData["message-err"] = SystemMessages.AdEditFailure;
                     return this.RedirectToAction("MyAds", "Users");
                 }
                 ad.ModifiedOn = DateTime.Now;
                 ad.CreatedOn = DateTime.Now;
                 if (model.files != null)
                 {
+                    if (!ImageValidator.IsValidImage(model.files))
+                    {
+                        this.TempData["message-err"] = SystemMessages.InvalidImage;
+                        return this.RedirectToAction("MyAds", "Users");
+                    }
                     foreach (var file in model.files)
                     {
                         var picture = this.ConvertBytesToPicture(file);
