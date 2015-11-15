@@ -1,8 +1,10 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
-<div class="jumbotron" id="categoriesContainer">
+<div class="well">
+    <h1 class="text-center">Welcome to OMX</h1>
+</div>
+<div class="well" id="categoriesContainer">
     <h2 class="text-center">Top 9 most visited categories</h2>
     @Html.Action("GetTopCategories", "Categories")
 </div>

@@ -21,7 +21,7 @@
     </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="alert alert-dismissible alert-warning">
+            <div class="alert alert-dismissible alert-danger">
                 <span class="pull-left">
                     <strong>Added by </strong><span class="badge">@Model.Owner.UserName</span>
                 </span>
@@ -30,14 +30,16 @@
                 </span>
                 <div class="clearfix"></div>
             </div>
-            <div class="label label-success">Visits: @Model.Visit</div>
+            <div class="label label-primary">Visits: @Model.Visit</div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h2 class="text-center">Ad's description</h2>
-            <div class="alert alert-dismissible alert-success">
-                @Model.Content
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    @Model.Content
+                </div>
             </div>
         </div>
     </div>
@@ -55,7 +57,7 @@
 
     <div id="adPicturesContainer"></div>
     <hr />
-    @if (User.Identity.IsAuthenticated)
+    @if (User.Identity.IsAuthenticated && Model.Owner.Id != User.Identity.GetUserId())
     {
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -71,7 +73,7 @@
                     @Html.Hidden("AdId", Model.Id)
                     @Html.Hidden("RecipientId", Model.Owner.Id)
                     @Html.TextArea("Content", "", new { @class = "form-control" })
-                    <input type="submit" value="Send" class="btn btn-primary" />
+                    <input type="submit" value="Send" class="btn btn-success" />
                 }
             </div>
         </div>

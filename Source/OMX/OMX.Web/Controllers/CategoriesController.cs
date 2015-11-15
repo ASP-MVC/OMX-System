@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using System.Web.Mvc;
+    using System.Web.UI;
 
     using AutoMapper.QueryableExtensions;
 
@@ -20,6 +21,7 @@
         }
 
         [HttpGet]
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult All()
         {
             var categories =
@@ -35,6 +37,7 @@
         }
 
         [HttpGet]
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult GetTopCategories()
         {
             var categories = 

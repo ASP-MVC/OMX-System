@@ -34,7 +34,7 @@
     @RenderBody()
     <img src="~/Content/Images/loading.gif" id="loadingGif" alt="gif"/>
     <hr/>
-    @Html.Partial("_FooterPartial")
+    @Html.Action("Footer", "Home", new {Area = string.Empty})
 </div>
 @Scripts.Render("~/bundles/bootstrap")
 @Scripts.Render("~/bundles/jqueryajax")

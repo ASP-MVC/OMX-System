@@ -1,18 +1,23 @@
 ﻿@model IEnumerable<CommentViewModel>
 
-<div class="bs-component">
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+            Notifications
+            <span class="badge">@Model.Count()</span>
+        </h3>
+    </div>
     @foreach (var alert in Model)
     {
-        var notificationContainerId = "notiContainer" + alert.Id;
-        <div class="alert alert-dismissible alert-info" id="@notificationContainerId">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <a href="@Url.Action("PreviewNotification", "Users", new { id = alert.Id })">
-                <h4 style="color:#2c3e50" class="text-center">
-                    You have new message from @alert.Author.UserName regarding Ad [ @alert.AdTitle ] !
-                </h4>
-            </a>
-            <div class="clearfix"></div>
+        <div class="panel-body">
+            <span class="label label-warning pull-right">unread</span>
+            <a href="@Url.Action("PreviewNotification", "Users", new { id = alert.Id })">@alert.AdTitle</a>
+            <p>
+                Send by
+                @Html.ActionLink(@alert.Author.UserName, @alert.Author.UserName, "Users", new {Area = string.Empty}, null)
+                at @alert.CommentedAt.ToString("dd/mm/yyyy hh:mm:ss")
+            </p>
         </div>
-        <br />
     }
 </div>

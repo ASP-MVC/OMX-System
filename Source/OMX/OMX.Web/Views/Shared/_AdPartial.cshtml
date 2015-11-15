@@ -1,10 +1,14 @@
 ﻿@model AdViewModel
-<div class="panel panel-warning ad-container">
+<div class="panel panel-primary ad-container">
     <div class="panel-heading">
-        <h2 class="panel-title">
+        <h3 class="panel-title">
+            @if (Model.CreatedOn >= DateTime.Now.AddDays(-3))
+            {
+                <span class="label label-success">new</span>
+            }
             @Model.Title
             <span class="badge pull-right">$ @Model.Price</span>
-        </h2>
+        </h3>
     </div>
     <div class="panel-body">
         @if (Model.Pictures.Any())

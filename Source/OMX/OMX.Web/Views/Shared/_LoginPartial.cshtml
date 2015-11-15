@@ -1,14 +1,18 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", new { Area = string.Empty} , FormMethod.Post,  new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", new { Area = string.Empty }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <a href="@Url.Action("MyNotifications", "Users")">
-                    Notifications <span class="badge" id="notificationsCount"></span>
+                    Notifications
+                    <span class="badge">
+                        <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+                        <span id="notificationsCount"></span>
+                    </span>
                 </a>
             </li>
             <li>
