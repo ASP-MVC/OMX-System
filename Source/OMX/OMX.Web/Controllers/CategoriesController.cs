@@ -85,6 +85,7 @@
             {
                 return this.HttpNotFound("The selected category no longer exists");
             }
+            
             this.ViewBag.CategoryName = category.Title;
 
             var subCategories = 
