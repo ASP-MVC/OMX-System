@@ -130,7 +130,12 @@
                 this.Data.SaveChanges();
                 return this.RedirectToAction("Index", "Home");
             }
-
+            string validationErrors = string.Join("\n\r",
+                    this.ModelState.Values.Where(e => e.Errors.Count > 0)
+                    .SelectMany(E => E.Errors)
+                    .Select(E => E.ErrorMessage)
+                    .ToArray());
+            this.TempData[GlobalConstants.ErrorKey] = validationErrors;
             model.SubCategories = this.populator.GetSubCategories();
             return this.View(model);
         }
