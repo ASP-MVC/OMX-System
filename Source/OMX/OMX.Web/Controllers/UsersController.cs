@@ -114,8 +114,9 @@
             if (this.UserProfile != null)
             {
                 var myAds =
-                    this.UserProfile.PublishedAds.Where(
-                        u => u.IsDeleted == false)
+                    this.UserProfile.PublishedAds
+                        .OrderByDescending(u => u.CreatedOn)
+                        .Where(u => u.IsDeleted == false)
                         .AsQueryable()
                         .ProjectTo<AdViewModel>();
 

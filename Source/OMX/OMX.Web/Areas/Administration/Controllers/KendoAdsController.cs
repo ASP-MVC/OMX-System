@@ -57,12 +57,16 @@
         [HttpPost]
         public ActionResult Edit([DataSourceRequest]DataSourceRequest request, AdminAdViewModel model)
         {
-            //var ad = this.Data.Ads.GetById(model.Id);
-            var ad = Mapper.Map<Ad>(model);
-            ad.CreatedOn = DateTime.Now;
-            ad.ModifiedOn = DateTime.Now;
-            this.Data.Ads.Update(ad);
-            this.ChangeEntityStateAndSave(ad, EntityState.Modified);
+            if (model != null && this.ModelState.IsValid)
+            {
+                var ad = this.Data.Ads.GetById(model.Id);
+                ad.Title = model.Title;
+                ad.Content = model.Content;
+                ad.Price = model.Price;
+                ad.SubCategoryId = model.SubCategoryId;
+                this.Data.Ads.Update(ad);
+                this.ChangeEntityStateAndSave(ad, EntityState.Modified);
+            }
             return this.GridOperation(model, request);
         }
 

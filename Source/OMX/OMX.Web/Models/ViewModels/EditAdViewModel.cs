@@ -36,7 +36,7 @@
 
         public IEnumerable<PictureViewModel> Pictures { get; set; }
 
-        [UIHint("MulptipleFile")]
+        [UIHint("MultipleFileAsync")]
         public IEnumerable<HttpPostedFileBase> files { get; set; }
 
         public void CreateMappings(IConfiguration configuration)

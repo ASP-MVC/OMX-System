@@ -1,6 +1,8 @@
 ﻿namespace OMX.Web.Controllers
 {
+    #region
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Threading;
@@ -21,6 +23,7 @@
     using OMX.Web.Models.ViewModels;
 
     using PagedList;
+    #endregion
 
     [Authorize]
     public class AdsController : BaseController
@@ -105,17 +108,21 @@
                 var ad = Mapper.Map<Ad>(model);
                 var currentUserId = this.User.Identity.GetUserId();
                 ad.OwnerId = currentUserId;
-                if (model.files != null)
+                if (this.TempData.ContainsKey("uploaded-pics"))
                 {
-                    foreach (var file in model.files)
+                    model.files = this.TempData["uploaded-pics"] as IEnumerable<HttpPostedFileBase>;
+                    if (model.files != null)
                     {
-                        if (!ImageValidator.IsValidImage(model.files))
+                        foreach (var file in model.files)
                         {
-                            this.TempData["message-err"] = SystemMessages.InvalidImage;
-                            return this.RedirectToAction("MyAds", "Users");
+                            if (!ImageValidator.IsValidImage(model.files))
+                            {
+                                this.TempData["message-err"] = SystemMessages.InvalidImage;
+                                return this.RedirectToAction("MyAds", "Users");
+                            }
+                            var picture = this.ConvertBytesToPicture(file);
+                            ad.Pictures.Add(picture);
                         }
-                        var picture = this.ConvertBytesToPicture(file);
-                        ad.Pictures.Add(picture);
                     }
                 }
 
@@ -196,18 +203,23 @@
                 }
                 ad.ModifiedOn = DateTime.Now;
                 ad.CreatedOn = DateTime.Now;
-                if (model.files != null)
+                if (this.TempData.ContainsKey("uploaded-pics"))
                 {
-                    if (!ImageValidator.IsValidImage(model.files))
+                    model.files = this.TempData["uploaded-pics"] as IEnumerable<HttpPostedFileBase>;
+
+                    if (model.files != null)
                     {
-                        this.TempData["message-err"] = SystemMessages.InvalidImage;
-                        return this.RedirectToAction("MyAds", "Users");
-                    }
-                    foreach (var file in model.files)
-                    {
-                        var picture = this.ConvertBytesToPicture(file);
-                        picture.AdId = ad.Id;
-                        ad.Pictures.Add(picture);
+                        if (!ImageValidator.IsValidImage(model.files))
+                        {
+                            this.TempData["message-err"] = SystemMessages.InvalidImage;
+                            return this.RedirectToAction("MyAds", "Users");
+                        }
+                        foreach (var file in model.files)
+                        {
+                            var picture = this.ConvertBytesToPicture(file);
+                            picture.AdId = ad.Id;
+                            ad.Pictures.Add(picture);
+                        }
                     }
                 }
                 this.Data.Ads.Update(ad);

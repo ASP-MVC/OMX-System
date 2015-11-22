@@ -6,6 +6,8 @@
 
         public const string AdministrationArea = "Administration";
 
+        public const string TemporaryFilesLocation = "~/Files/Temporary";
+
         public const string UserRole = "User";
 
         public const int AdsPageSize = 6;

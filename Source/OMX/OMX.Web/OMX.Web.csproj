@@ -1102,6 +1102,7 @@
     <Content Include="Views\Shared\DisplayTemplates\MiniPictureViewModel.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MiniPictureWithDeleteViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultipleFileAsync.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -1252,6 +1253,7 @@
     <Content Include="Views\Users\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Files\Temporary\" />
     <Folder Include="Views\Comments\" />
     <Folder Include="Views\Pictures\" />
   </ItemGroup>

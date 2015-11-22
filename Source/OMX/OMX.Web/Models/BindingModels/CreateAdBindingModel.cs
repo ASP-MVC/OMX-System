@@ -42,7 +42,7 @@
 
         public IEnumerable<SelectListItem> SubCategories { get; set; }
 
-        [UIHint("MulptipleFile")]
+        [UIHint("MultipleFileAsync")]
         public IEnumerable<HttpPostedFileBase> files { get; set; }
     }
 }

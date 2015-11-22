@@ -1,0 +1,25 @@
+﻿@model object
+
+@{
+    var controllerName = "Pictures";
+    var saveActionName = "Save";
+    var removeActionName = "Remove";
+}
+
+<br />
+<div class="row">
+    <div>
+        <div class="col-md-2">@Html.Label("Add ad's images")</div>
+        <div class="col-md-8">
+            <div class="demo-section k-content">
+                @(Html.Kendo().Upload().Name("files")
+            .Async(a => a
+                .Save(saveActionName, controllerName)
+                .Remove(removeActionName, controllerName)
+                .AutoUpload(true)
+                .SaveField("files")
+            ))
+            </div>
+        </div>
+    </div>
+</div>
