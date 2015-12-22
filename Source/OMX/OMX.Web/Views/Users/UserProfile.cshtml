@@ -12,13 +12,13 @@
             <p>Ads published: <span class="badge">@Model.PublishedAdsCount</span></p>
             <div class="row">
                 <div class="col-md-12">
-                    <span class="label label-primary">Username:</span><strong>@Model.UserName</strong>
+                    <span class="label label-primary">Username:</span><strong>@Html.Encode(@Model.UserName)</strong>
                 </div>
             </div>
             <hr />
             <div class="row">
                 <div class="col-md-12">
-                    <span class="label label-primary">Email:</span><strong>@Model.Email</strong>
+                    <span class="label label-primary">Email:</span><strong>@Html.Encode(@Model.Email)</strong>
                 </div>
             </div>
         </div>

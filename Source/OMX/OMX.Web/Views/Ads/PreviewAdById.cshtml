@@ -23,14 +23,14 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="alert alert-dismissible alert-danger">
                 <span class="pull-left">
-                    <strong>Added by </strong><span class="badge">@Model.Owner.UserName</span>
+                    <strong>Added by </strong><span class="badge">@Html.Encode(@Model.Owner.UserName)</span>
                 </span>
                 <span class="pull-right">
-                    <strong>Added at </strong><span class="badge">@Model.CreatedOn</span>
+                    <strong>Added at </strong><span class="badge">@Html.Encode(@Model.CreatedOn)</span>
                 </span>
                 <div class="clearfix"></div>
             </div>
-            <div class="label label-primary">Visits: @Model.Visit</div>
+            <div class="label label-primary">Visits: @Html.Encode(@Model.Visit)</div>
         </div>
     </div>
     <div class="row">
@@ -38,7 +38,7 @@
             <h2 class="text-center">Ad's description</h2>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    @Model.Content
+                    @Html.Encode(@Model.Content)
                 </div>
             </div>
         </div>

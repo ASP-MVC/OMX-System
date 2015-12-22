@@ -6,8 +6,8 @@
             {
                 <span class="label label-success">new</span>
             }
-            @Model.Title
-            <span class="badge pull-right">$ @Model.Price</span>
+           @Html.Encode(@Model.Title)
+            <span class="badge pull-right">$ @Html.Encode(Model.Price)</span>
         </h3>
     </div>
     <div class="panel-body">
@@ -20,7 +20,7 @@
             }
             else
             {
-                <img src="@Model.Pictures.First().Url" alt="image" class="img-thumbnail ad-image" />
+                <img src="@Html.Encode(@Model.Pictures.First().Url)" alt="image" class="img-thumbnail ad-image" />
             }
         }
         else

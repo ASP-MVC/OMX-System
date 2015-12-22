@@ -7,19 +7,26 @@
         <div class="panel panel-info" id="@notificationContainerId">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    @using (Ajax.BeginForm("ReadComment", "Comments", new { alert.Id }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = notificationContainerId, InsertionMode = InsertionMode.Replace, OnSuccess = "ajaxHelper.hideNotification(" + notificationContainerId + ")" }, new { @class = "pull-right" }))
+                    @using (Ajax.BeginForm("ReadComment", "Comments", new { alert.Id },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            UpdateTargetId = notificationContainerId,
+                            InsertionMode = InsertionMode.Replace,
+                            OnSuccess = "ajaxHelper.hideNotification(" + notificationContainerId + ")"
+                        }, new { @class = "pull-right" }))
                     {
                         <input type="submit" value="Read" class="btn btn-success"/>
                     }
                     <div class="clearfix"></div>
-                    @alert.AdTitle
+                    @Html.Encode(@alert.AdTitle)
                 </h3>
             </div>
             <div class="panel-body">
-                <p><span class="badge">Comment: </span> @alert.Content</p>
+                <p><span class="badge">Comment: </span> @Html.Encode(@alert.Content)</p>
             </div>
             <div class="panel panel-footer">
-                <strong><span class="label label-primary">Sender:</span> @alert.Author.UserName</strong>
+                <strong><span class="label label-primary">Sender:</span> @Html.Encode(@alert.Author.UserName)</strong>
                 <p><span class="label label-primary">Recieved at: </span> @alert.CommentedAt.ToShortDateString()</p>
             </div>
             <div>

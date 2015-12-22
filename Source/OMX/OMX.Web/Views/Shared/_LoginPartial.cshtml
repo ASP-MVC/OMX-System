@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", new { Area = string.Empty }, new { title = "Manage" })
+                @Html.ActionLink("Hello " + Html.Encode(User.Identity.GetUserName()) + "!", "Index", "Manage", new { Area = string.Empty }, new { title = "Manage" })
             </li>
             <li>
                 <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
