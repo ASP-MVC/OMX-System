@@ -7,7 +7,7 @@
         foreach (var ad in Model)
         {
             <div class="col-md-6">
-                <a href="/Ads/PreviewAdById/@ad.Id">@Html.Partial("_AdPartial", ad)</a>
+                <a href="@Url.Action("PreviewAdById", "Ads", new {id = ad.Id})">@Html.Partial("_AdPartial", ad)</a>
             </div>
         }
     }

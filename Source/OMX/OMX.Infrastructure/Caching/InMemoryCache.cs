@@ -2,6 +2,7 @@
 {
     using System;
     using System.Web;
+    using System.Web.Caching;
 
     public class InMemoryCache : ICacheService
     {

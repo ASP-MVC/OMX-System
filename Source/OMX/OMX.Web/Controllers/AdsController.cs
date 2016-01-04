@@ -25,6 +25,7 @@
     using PagedList;
     #endregion
 
+    [RoutePrefix("ads")]
     [Authorize]
     public class AdsController : BaseController
     {
@@ -52,6 +53,7 @@
         }
 
         [HttpGet]
+        [Route("{id:int}")]
         [AllowAnonymous]
         public ActionResult PreviewAdById(int id)
         {
@@ -67,6 +69,7 @@
         }
 
         [HttpGet]
+        [Route("ad-pictures/{id:int}")]
         [AllowAnonymous]
         public ActionResult AdPictures(int id)
         {
@@ -89,6 +92,7 @@
         }
 
         [HttpGet]
+        [Route("create")]
         public ActionResult Create()
         {
             var adsBindingModel = new CreateAdBindingModel()
@@ -100,6 +104,7 @@
         }
 
         [HttpPost]
+        [Route("create")]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateAdBindingModel model)
         {

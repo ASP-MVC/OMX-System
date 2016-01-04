@@ -18,7 +18,7 @@
 
     using PagedList;
 
-    [RoutePrefix("Users")]
+    [RoutePrefix("users")]
     [System.Web.Mvc.Authorize]
     public class UsersController : BaseController
     {
@@ -47,7 +47,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("UploadProfileImage")]
+        [Route("upload-profile")]
         public ActionResult UploadProfileImage(HttpPostedFileBase file)
         {
             this.SaveFileToFileSystem(file);
@@ -63,7 +63,7 @@
         }
 
         [HttpGet]
-        [Route("GetUnreadNotifications")]
+        [Route("get-unread-notifications")]
         public ActionResult GetUnreadNotifications()
         {
             if (this.UserProfile == null)
@@ -78,7 +78,7 @@
         }
 
         [HttpGet]
-        [Route("MyNotifications")]
+        [Route("my-notifications")]
         public ActionResult MyNotifications()
         {
             if (this.UserProfile != null)
@@ -96,7 +96,7 @@
         }
 
         [HttpGet]
-        [Route("PreviewNotification")]
+        [Route("preview-notification")]
         public ActionResult PreviewNotification(int id)
         {
             var notification = 
@@ -108,7 +108,7 @@
         }
 
         [HttpGet]
-        [Route("MyAds")]
+        [Route("my-ads")]
         public ActionResult MyAds(int page = 1)
         {
             if (this.UserProfile != null)

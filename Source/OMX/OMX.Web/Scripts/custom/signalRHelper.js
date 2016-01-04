@@ -10,7 +10,7 @@
 var signalR = (function() {
 
     function getNotificationsCount() {
-        $.get("/Users/GetUnreadNotifications", function(unreadNotificationsCount) {
+        $.get("/users/get-unread-notifications", function (unreadNotificationsCount) {
             $("#notificationsCount").text(unreadNotificationsCount.unreadMsgs);
         });
     }

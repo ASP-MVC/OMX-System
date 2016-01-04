@@ -1,4 +1,6 @@
-﻿namespace OMX.Infrastructure.Populators
+﻿using OMX.Models;
+
+namespace OMX.Infrastructure.Populators
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -16,6 +18,35 @@
         {
             this.data = data;
             this.cache = cache;
+        }
+
+        public IEnumerable<Category> GetAllCategories()
+        {
+            var categories = this.cache.Get<IEnumerable<Category>>("categoriesWithSubCategories",
+                () =>
+                {
+                    return this.data.Categories
+                       .All()
+                       .OrderByDescending(x => x.Visit)
+                       .ToList();
+                });
+
+            return categories;
+        }
+
+        public IEnumerable<Category> GetCategoriesWithSubCategories()
+        {
+            var categories = this.cache.Get<IEnumerable<Category>>("categoriesWithSubCategories",
+                () =>
+                {
+                    return this.data.Categories
+                       .All()
+                       .OrderByDescending(x => x.Visit)
+                       .Where(c => c.SubCategories.Any())
+                       .ToList();
+                });
+
+            return categories;
         }
 
         public IEnumerable<SelectListItem> GetCategories()

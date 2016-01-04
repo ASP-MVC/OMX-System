@@ -1,16 +1,15 @@
-﻿using OMX.Data;
-using OMX.Models;
-using OMX.Web;
-
-namespace OMX.Web
+﻿namespace OMX.Web
 {
     using System;
-
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
     using Microsoft.Owin.Security.Cookies;
+    using Microsoft.Owin.Security.Google;
+
+    using OMX.Data;
+    using OMX.Models;
 
     using Owin;
 
@@ -76,11 +75,11 @@ namespace OMX.Web
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "1024858919710-ku1rqckg9tclis5cekia54rnkb5pc76a.apps.googleusercontent.com",
+                ClientSecret = "YrtyuDrAhgas6mRmhBpIJYhP"
+            });
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿namespace OMX.Web.Controllers
+﻿using System.Collections.Generic;
+using Kendo.Mvc.Infrastructure;
+using OMX.Infrastructure.Populators;
+
+namespace OMX.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
@@ -15,24 +19,23 @@
     public class CategoriesController : BaseController
     {
         private const int TopNineCategories = 9;
-        public CategoriesController(IOMXData data)
+        private IDropDownListPopulator populator;
+        public CategoriesController(IOMXData data, IDropDownListPopulator populator)
             : base(data)
         {
+            this.populator = populator;
         }
 
         [HttpGet]
         [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult All()
         {
-            var categories =
-                this.Data.Categories.All()
-                .OrderByDescending(c => c.Visit)
-                .ThenByDescending(c => c.CreatedOn)
-                .Where(c => c.SubCategories.Any())
-                .Project()
-                .To<CategoryViewModel>()
+            var categories = this.populator
+                .GetCategoriesWithSubCategories()
+                .AsQueryable()
+                .ProjectTo<CategoryViewModel>()
                 .ToList();
-
+            
             return this.PartialView("_AllCategoriesPartial", categories);
         }
 
