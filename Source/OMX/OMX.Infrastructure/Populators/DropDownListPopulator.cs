@@ -1,4 +1,7 @@
-﻿using OMX.Models;
+﻿using System.Runtime.Caching;
+using System.Web;
+using System.Web.Caching;
+using OMX.Models;
 
 namespace OMX.Infrastructure.Populators
 {
@@ -18,6 +21,21 @@ namespace OMX.Infrastructure.Populators
         {
             this.data = data;
             this.cache = cache;
+        }
+
+        public IEnumerable<Ad> GetUserAds(string id)
+        {
+            var ads = this.cache.Get<IEnumerable<Ad>>("userAds",
+                () =>
+                {
+                    return this.data.Ads
+                       .All()
+                       .OrderByDescending(x => x.Visit)
+                       .Where(u => u.OwnerId == id)
+                       .ToList();
+                });
+
+            return ads;
         }
 
         public IEnumerable<Category> GetAllCategories()
@@ -44,8 +62,7 @@ namespace OMX.Infrastructure.Populators
                        .OrderByDescending(x => x.Visit)
                        .Where(c => c.SubCategories.Any())
                        .ToList();
-                });
-
+                }); 
             return categories;
         }
 

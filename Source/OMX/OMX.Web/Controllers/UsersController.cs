@@ -109,16 +109,16 @@
 
         [HttpGet]
         [Route("my-ads")]
+        [OutputCache(Duration = 600, VaryByParam = "none")]
         public ActionResult MyAds(int page = 1)
         {
             if (this.UserProfile != null)
             {
                 var myAds =
-                    this.UserProfile.PublishedAds
-                        .OrderByDescending(u => u.CreatedOn)
-                        .Where(u => u.IsDeleted == false)
+                    this.Populator.GetUserAds(this.UserProfile.Id)
                         .AsQueryable()
-                        .ProjectTo<AdViewModel>();
+                        .ProjectTo<AdViewModel>()
+                        .ToList();
 
                 return this.View(myAds.ToPagedList(page, GlobalConstants.AdsPageSize));
             }

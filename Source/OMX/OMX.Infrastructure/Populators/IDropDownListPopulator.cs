@@ -14,5 +14,7 @@ namespace OMX.Infrastructure.Populators
         IEnumerable<SelectListItem> GetCategories();
 
         IEnumerable<SelectListItem> GetSubCategories();
+
+        IEnumerable<Ad> GetUserAds(string id);
     }
 }

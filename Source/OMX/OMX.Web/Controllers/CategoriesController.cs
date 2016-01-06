@@ -43,14 +43,11 @@ namespace OMX.Web.Controllers
         [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult GetTopCategories()
         {
-            var categories = 
-                this.Data.Categories.All()
-                .OrderByDescending(c => c.Visit)
-                .ThenByDescending(c => c.CreatedOn)
-                .Where(s => s.SubCategories.Any())
+            var categories = this.populator
+                .GetCategoriesWithSubCategories()
                 .Take(TopNineCategories)
-                .Project()
-                .To<CategoryViewModel>()
+                .AsQueryable()
+                .ProjectTo<CategoryViewModel>()
                 .ToList();
 
             return this.PartialView("_AllCategoriesPartial", categories);

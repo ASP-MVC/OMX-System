@@ -1,4 +1,8 @@
-﻿namespace OMX.Web.Controllers
+﻿using OMX.Data;
+using OMX.Infrastructure.Caching;
+using OMX.Infrastructure.Populators;
+
+namespace OMX.Web.Controllers
 {
     using System;
     using System.Linq;
@@ -15,11 +19,14 @@
     {
         public BaseController(IOMXData data)
         {
+            this.Populator = new DropDownListPopulator(new OMXData(new OMXDbContext()), new InMemoryCache());
             this.Data = data;
             this.HubContext = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
         }
 
         protected IHubContext HubContext { get; private set; }
+
+        protected IDropDownListPopulator Populator { get; private set; }
 
         protected IOMXData Data { get; private set; }
 
