@@ -36,9 +36,9 @@
                     @Html.Hidden("AdId", alert.AdId)
                     @Html.Hidden("RecipientId", alert.Author.Id)
                     @Html.Label("Reply to " + alert.Author.UserName)
-                    @Html.TextArea("Content", "", new { @class = "form-control", id = "replyTextBox" })
+                    @Html.TextArea("Content", "", new { @class = "form-control", id = "replyTextBox", placeholder = "Reply ..." })
 
-                    <input type="submit" value="Reply" class="btn btn-success"/>
+                    <input type="submit" value="Reply" class="btn btn-success btn-sm"/>
                 }
             </div>
         </div>

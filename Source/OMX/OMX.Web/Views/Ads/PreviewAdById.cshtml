@@ -72,8 +72,8 @@
                     @Html.AntiForgeryToken()
                     @Html.Hidden("AdId", Model.Id)
                     @Html.Hidden("RecipientId", Model.Owner.Id)
-                    @Html.TextArea("Content", "", new { @class = "form-control" })
-                    <input type="submit" value="Send" class="btn btn-success" />
+                    @Html.TextArea("Content", "", new { @class = "form-control", placeholder = "Send personal message..." })
+                    <input type="submit" value="Send" class="btn btn-success btn-sm" />
                 }
             </div>
         </div>

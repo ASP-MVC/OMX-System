@@ -43,6 +43,7 @@ $(document).ready(function () {
 });
 
 function ShowSuccessMsg(data) {
+    $("#Content").val('');
     notificationHelper.showSuccessMessage(data);
 }
 
