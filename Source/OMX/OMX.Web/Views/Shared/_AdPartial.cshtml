@@ -6,8 +6,15 @@
             {
                 <span class="label label-success">new</span>
             }
-           @Html.Encode(@Model.Title)
-            <span class="badge pull-right">$ @Html.Encode(Model.Price)</span>
+            @Html.Encode(@Model.Title)
+            @if (Model.Price == 0)
+            {
+                <span class="badge pull-right">Free</span>
+            }
+            else
+            {
+                <span class="badge pull-right">$ @Html.Encode(Model.Price)</span>
+            }
         </h3>
     </div>
     <div class="panel-body">

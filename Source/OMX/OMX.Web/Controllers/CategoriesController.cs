@@ -19,18 +19,17 @@ namespace OMX.Web.Controllers
     public class CategoriesController : BaseController
     {
         private const int TopNineCategories = 9;
-        private IDropDownListPopulator populator;
-        public CategoriesController(IOMXData data, IDropDownListPopulator populator)
+        
+        public CategoriesController(IOMXData data)
             : base(data)
         {
-            this.populator = populator;
         }
 
         [HttpGet]
         [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult All()
         {
-            var categories = this.populator
+            var categories = this.Populator
                 .GetCategoriesWithSubCategories()
                 .AsQueryable()
                 .ProjectTo<CategoryViewModel>()
@@ -43,7 +42,7 @@ namespace OMX.Web.Controllers
         [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult GetTopCategories()
         {
-            var categories = this.populator
+            var categories = this.Populator
                 .GetCategoriesWithSubCategories()
                 .Take(TopNineCategories)
                 .AsQueryable()

@@ -109,7 +109,6 @@
 
         [HttpGet]
         [Route("my-ads")]
-        [OutputCache(Duration = 600, VaryByParam = "none")]
         public ActionResult MyAds(int page = 1)
         {
             if (this.UserProfile != null)
