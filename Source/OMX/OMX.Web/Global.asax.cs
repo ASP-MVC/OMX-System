@@ -16,12 +16,19 @@
     {
         protected void Application_Start()
         {
+            this.UseOnlyRazorViewEngine();
             this.LoadAutoMapper();
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        private void UseOnlyRazorViewEngine()
+        {
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
         }
 
         private void LoadAutoMapper()
