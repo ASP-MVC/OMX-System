@@ -1,0 +1,18 @@
+﻿@model IEnumerable<SimplifiedSubcategoryModel>
+
+<div class="row">
+    <h2 class="text-center">@ViewBag.CategoryName</h2>
+    <div class="list-group well">
+        @foreach (var subCategory in Model)
+        {
+        <div class="col-md-4">
+            <a asp-controller="Ads"
+               asp-action="Ads"
+               asp-route-id="@subCategory.Id"
+               class="list-group-item">@Html.Encode(@subCategory.Title.ToString())
+            </a>
+        </div>
+        }
+        <div class="clearfix"></div>
+    </div>
+</div>
