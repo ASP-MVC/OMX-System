@@ -9,6 +9,8 @@
 
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0" />
@@ -20,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\OMX.Common\OMX.Common.csproj" />
+    <ProjectReference Include="..\..\Core\OMX.Application\OMX.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\OMX.Persistence\OMX.Persistence.csproj" />
   </ItemGroup>
 

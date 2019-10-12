@@ -1,5 +1,7 @@
 namespace OMX.MVC
 {
+    using AutoMapper;
+    using MediatR;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -7,8 +9,11 @@ namespace OMX.MVC
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using OMX.Application.Categories.Queries.GetCategoriesWithSubCategories;
+    using OMX.Application.Infrastructure.Mapper;
     using OMX.Common;
     using OMX.MVC.Persistence;
+    using System.Reflection;
 
     public class Startup
     {
@@ -21,8 +26,15 @@ namespace OMX.MVC
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add AutoMapper
+            services.AddAutoMapper(new Assembly[] { typeof(AutoMapperProfile).GetTypeInfo().Assembly });
+
+            // Add MediatR
+            services.AddMediatR(typeof(CategoriesWithSubCategoriesHandler).GetTypeInfo().Assembly);
+
+
+            // Add DbContext using SQL Server Provider
             services.AddDbContext<OMXDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString(GlobalConstants.ConnectionStringKey)));
-            
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<OMXDbContext>();
 
